@@ -1,0 +1,96 @@
+/* Copyright (C) 2020, International Business Machines Corporation */
+/* All Rights Reserved */
+namespace application;
+use spl.utility::*;
+
+/**
+ * Main composite for stock processing application.
+ * It ingests a stream of data representing stock prices over time and computes
+ * the average price for all each stock ticker, based on the last 5 quotes.
+ * This is essentially the same application as TradesAppMain.spl but has been changed for the cloud.
+ * It uses a Circular File source so that data is perpetually generated. 
+ * Writes to Console instead of to a file.
+ * See the Quick Start Guide for step by step explanation of this application:
+ * http://ibmstreams.github.io/streamsx.documentation/docs/spl/quick-start/qs-2/
+ */
+type Quote = rstring ticker, rstring date, rstring time, float64 askprice;
+
+composite TradesAppCloud_withLogTrace
+{
+	graph
+		stream<rstring filename> Signal = Beacon()
+		{
+			param
+				period: 20.0; // Send a signal every 20 seconds 
+			output
+				Signal: filename = getApplicationDir() + "/data/trades.csv";
+			config
+				placement: partitionExlocation("input");
+		}
+
+		// Instead of reading the file only once, the Signal operator will send 
+		// a tuple every 20 seconds to re-read the file so that data flows continuously through the application.
+		stream<Quote> Quotes = FileSource(Signal)
+		{
+			param
+				format: csv;
+				hasHeaderLine: true;
+		}
+
+		stream<Quote> FilteredQuotes = Filter(Quotes)
+		{
+			param
+				filter: askprice > 0.0;
+		}
+
+		
+		@view(name = "AvgPrices", port = AvgPrice, sampleSize = 50, bufferSize =
+			100, activateOption = automatic)
+		stream<rstring ticker, float64 min, float64 max,
+			float64 average> AvgPrice = Aggregate(FilteredQuotes as inPort0Alias)
+		{
+			window
+				inPort0Alias: tumbling, count(5), partitioned;
+			param
+				partitionBy: ticker;
+			output
+				AvgPrice: average = Average(askprice), min = Min(askprice), max = Max(askprice);
+			config
+				placement: partitionExlocation("input");
+		}
+		
+		stream<rstring ticker, float64 min, float64 max, float64 average> PrintAvPrice = Custom(AvgPrice)
+		{
+			logic
+				onTuple AvgPrice:
+				{
+					if (average == 0.0l)
+					{
+						printStringLn("ERROR: " + ticker);
+					}
+					else
+					{ 
+                    	rstring mySubmissionTimeVariable4string = getSubmissionTimeValue("mySubmissionTimeVariable4string","defaultValue");
+						appTrc(spl::Trace.info, "mySubmissionTimeVariable4string =" + mySubmissionTimeVariable4string);
+                    	list<rstring> mySubmissionTimeVariable4listOfStrings = getSubmissionTimeListValue("mySubmissionTimeVariable4listOfStrings",["defaultFirstListElement", "defaultSecondListElement"]);
+						appTrc(spl::Trace.info, "mySubmissionTimeVariable4listOfStrings var: ");
+						for (rstring parm in mySubmissionTimeVariable4listOfStrings) {
+							appTrc(spl::Trace.info, "   String element: "+parm);
+						}
+						printStringLn("Average asking price for " + ticker + "  is " + (rstring) average);
+						// submit the tuple
+						submit(AvgPrice, PrintAvPrice);						
+					}
+			}
+		}
+
+		   () as PrintToFile = FileSink(PrintAvPrice)
+         {
+            param
+               file : "/tmp/tradesSummary.csv" ;
+               flush : 1u ;
+               format : csv ;
+         }
+
+}
+
