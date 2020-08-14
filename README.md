@@ -77,7 +77,10 @@ Discuss any information to collect:
 
 ![non-EAM Deploy](./images/DeployAppPkg-withoutEAM.png)
 
-1. Build docker image for the application
+1. Develop application
+
+    In this sample we use a predefined sample application called "TracesAppCloud.spl".  It is an SPL application that shows a simple SPL application.  For the purpose of this sample, some additional statements have been added to the application to show examples of how to define and reference submission time variables, how to insert application log statements in to your application, and also application trace statements.
+1. Build application for the Edge
     - Use the VSCode tool to compile the SPL application code, and ultimately build into a Docker image.
         1. Right click in the TradesAppCloud_withLogTrace application, and select "Build"
             - Monitor the console output until the "Successfully build the application" message is displayed
@@ -85,10 +88,10 @@ Discuss any information to collect:
             - When prompted, select the base image that contains "streams-edge-base-application", and enter "tradesappcloud-withlogtrace" for image name, and "1.0" for image tag
             - Invoke "Build image"
             - Monitor the console output until "Successfully built the edge application image", and take note of the imagePrefix from the Image Details.
-            
-1. Develop and publish service for the application
 
-1. Deploy the service into a Edge node
+1. Develop / Publish application package
+
+1. Deploy application package to an Edge node
 
 1. View the runtime logs
 
