@@ -73,14 +73,38 @@ Discuss any information to collect:
 
 ## Steps 
 
+This sample will show how to develop and deploy the application with and without EAM.  The high level steps are the same for both of these cases.  The individual steps will point out when there is difference between these two scenarios.
+1. Develop Application
+1. Build Application for the Edge
+1. Develop/Publish Application Package
+    - The generic term "Application Package" will be used in the top level step description.  The specific terms used in the different scenarios will be tailored to that scenario. 
+    - The detailed steps for each of the scenarios will be described separately.
+1. Deploy Application Package
+    - The detailed steps for each of the scenarios will be described separately.
+1. View log
+
+
 ![EAM Deploy](./images/DeployAppPackage-withEAM.png)
 
 ![non-EAM Deploy](./images/DeployAppPkg-withoutEAM.png)
 
-1. Develop application
+1. Develop application (via VS Code)
 
-    In this sample we use a predefined sample application called "TracesAppCloud.spl".  It is an SPL application that shows a simple SPL application.  For the purpose of this sample, some additional statements have been added to the application to show examples of how to define and reference submission time variables, how to insert application log statements in to your application, and also application trace statements.
-1. Build application for the Edge
+    In this sample we use a predefined sample application called "TracesAppCloud.spl".  It is an SPL application that shows a simple SPL application that reads some stock ticker entries, does a simple calculation on them, and then writes them out. It will continue doing this in a loop.
+
+    For the purpose of this sample, some additional statements have been added to the application to show examples of how to define and reference submission time variables, and how to add application trace statements to output these values into the application log.
+    
+    Search for "LOOK HERE" to see the section of the application that is most relative to this sample.
+    
+    Notice the names for the two submission time variable names as they will be needed later on. 
+    - _mySubmissionTimeVariable_string_
+    - _mySubmissionTimeVariable_listOfStrings_
+    
+    Note: if there is a naming conflict with submission time variables with different parts of the application, or if you do not have access to the application source code, you will need to retrieve the names of the supported variables by following the xxxx <Retrieving service variables for edge applications> topic.
+    
+    ![App Snippet](./images/App_snippet.png)
+    
+1. Build application for the Edge (via VS Code)
     - Use the VSCode tool to compile the SPL application code, and ultimately build into a Docker image.
         1. Right click in the TradesAppCloud_withLogTrace application, and select "Build"
             - Monitor the console output until the "Successfully build the application" message is displayed
@@ -88,12 +112,20 @@ Discuss any information to collect:
             - When prompted, select the base image that contains "streams-edge-base-application", and enter "tradesappcloud-withlogtrace" for image name, and "1.0" for image tag
             - Invoke "Build image"
             - Monitor the console output until "Successfully built the edge application image", and take note of the imagePrefix from the Image Details.
+        
+1. Select Edge Node(s) for development and deployment (via CP4D Console)
 
-1. Develop / Publish application package
+1. Develop / Publish application package 
+    - If EAM scenario, ssh to CP4D Edge node chosen for development and perform the steps described in the "Packaging an edge application service for deployment by using Edge Application Manager".  The submission time variables from the application will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
+    
+    - If CPD scenario, login to CP4D Console, and perform the steps described in the "Packaging using Cloud Pak for Data" topic.  The values for the submission time variables will be included in the resulting application package.
 
-1. Deploy application package to an Edge node
+1. Deploy application package to an Edge node 
+    - If EAM scenario, ssh to CP4D Edge node chosen for deployment and perform the steps described in the "Deploying using Edge Application Manager".  The values for the submission time variables from the application will be specified during deployment.
+    
+    - If CPD scenario, login to CP4D Console, and perform the steps described in the "Deploying using Cloud Pak for Data" topic. The values for the submission time variables can not be changed at this time.
 
-1. View the runtime logs
+1. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
 
 
 * Outline major steps to complete the task, e.g. They must use the X operator with parameters a,b, and c. State that early and repeat it a couple of times. 

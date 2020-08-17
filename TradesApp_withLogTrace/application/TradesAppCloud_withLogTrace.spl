@@ -70,14 +70,25 @@ composite TradesAppCloud_withLogTrace
 					}
 					else
 					{ 
-                    	rstring mySubmissionTimeVariable4string = getSubmissionTimeValue("mySubmissionTimeVariable4string","defaultValue");
-						appTrc(spl::Trace.info, "mySubmissionTimeVariable4string =" + mySubmissionTimeVariable4string);
-                    	list<rstring> mySubmissionTimeVariable4listOfStrings = getSubmissionTimeListValue("mySubmissionTimeVariable4listOfStrings",["defaultFirstListElement", "defaultSecondListElement"]);
-						appTrc(spl::Trace.info, "mySubmissionTimeVariable4listOfStrings var: ");
-						for (rstring parm in mySubmissionTimeVariable4listOfStrings) {
+						// LOOK HERE
+						
+						// define submission time variables; 1 of each supported type (string, list of strings)
+                    	rstring mySubmissionTimeVariable_string 
+							= getSubmissionTimeValue("mySubmissionTimeVariable_string","defaultValue");
+                    	list<rstring> mySubmissionTimeVariable_listOfStrings 
+							= getSubmissionTimeListValue("mySubmissionTimeVariable_listOfStrings",["defaultFirstListElement", "defaultSecondListElement"]);
+						
+						// add trace statements that will display the submission time values that were inputted
+						appTrc(spl::Trace.info, "mySubmissionTimeVariable_string =" + mySubmissionTimeVariable_string);
+						appTrc(spl::Trace.info, "mySubmissionTimeVariable_listOfStrings var: ");
+						for (rstring parm in mySubmissionTimeVariable_listOfStrings) {
 							appTrc(spl::Trace.info, "   String element: "+parm);
 						}
+
+						// add some print lines - modify "yourName" below if you would like to customize the output.
 						printStringLn("Average asking price for " + ticker + "  is " + (rstring) average);
+						printStringLn("This sample is being is being tried out by: " + "yourName");
+
 						// submit the tuple
 						submit(AvgPrice, PrintAvPrice);						
 					}

@@ -1,0 +1,35 @@
+{
+    "name": "Runtime options available for all Streams application",
+    "userInput": [
+        {
+            "name": "STREAMS_OPT_DATA_DIRECTORY",
+            "label" : "Directory where application uses for default location.",
+            "type": "string",
+            "defaultValue": ""
+        },
+        {
+            "name": "STREAMS_OPT_METRICS_INTERVAL",
+            "label" : "Metrics interval in seconds.  0 = off",
+            "type": "string",
+            "defaultValue": "0"
+        },
+        {
+            "name": "STREAMS_OPT_DEFAULT_THREADING_MODEL",
+            "label" : "Threading model to be used: automatic, dynamic, manual, dedicated",
+            "type": "string",
+            "defaultValue": "automatic"
+        },
+        {
+            "name": "STREAMS_OPT_LOG_LEVEL",
+            "label" : "Logging level: 0=ERROR, 1=WARNING, 2=INFO",
+            "type": "string",
+            "defaultValue": "1"
+        },
+        {
+            "name": "STREAMS_OPT_TRACE_LEVEL",
+            "label" : "Tracing level: 0=OFF, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG, 5=TRACE",
+            "type": "string",
+            "defaultValue": "0"
+        }
+    ]
+}
