@@ -133,16 +133,18 @@ This sample will show how to develop and deploy the application with and without
     - If CPD scenario, login to CP4D Console, and perform these steps. For more informations, see "Packaging using Cloud Pak for Data" topic. 
         1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
         1. Add Application packages
-        1. Enter "app-control-sample" for Name
-        1. Enter "1.0" for Version
-        1. Add "tradesappcloud-withlogtrace:1.0" for the Image reference
+            | Field | Value |
+            | ----- | ----- |
+            | Name | app-control-sample | 
+            | Version | 1.0 |
+            | Image reference | tradesappcloud-withlogtrace:1.0 | 
         1. Scroll down to Additional attributes > Environment variables
         
             | Variable Name | Value |
             | ------------- | ----- |
             | mySubmissionTimeVariable_string | My-favorite-football-teams |
-            | mySubmissionTimeVariable_listOfStrings | "Vikings,Packers,Lions,Bears" |
-            | STREAMS_OPT_TRACE_LEVEL | 3  |  // info level
+            | mySubmissionTimeVariable_listOfStrings | Vikings,Packers,Lions,Bears |
+            | STREAMS_OPT_TRACE_LEVEL | 3  |  
     
     
     The values for the submission time variables discovered above in step#1 will be included in the resulting application package. To set these. 
