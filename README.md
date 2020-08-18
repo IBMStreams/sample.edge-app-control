@@ -192,7 +192,7 @@ While the steps are the same for both scenarios, the detailed steps has some dif
             1. hzn dev service new -s app-control-sample-service -V 1.0 --noImageGen -i $OCP_DOCKER_HOST/$IMAGE_PREFIX/tradeswithlogtrace:1.0
         1. Add submission time variables and runtime-option:trace
             1. vi horizon/service.definition.json
-            1. insert the following into the "userInput" array such that it looks like this:
+            1. insert the submission time variables into the "userInput" array such that it looks like this:
                 ```
                 {
                     "org": "$HZN_ORG_ID",
@@ -238,6 +238,24 @@ While the steps are the same for both scenarios, the detailed steps has some dif
 
 1. Deploy application package to an Edge node 
     - ssh to CP4D Edge node chosen for deployment and perform the following steps.  For more information, see the "Deploying using Edge Application Manager" topic.  The values for the submission time variables from the application will be specified during deployment.
+        1. vi userinput.json
+        1. add the following json to it.
+        
+        ```
+                {
+                    "services": [
+                        {
+                            "org": "$HZN_ORG_ID",
+                            "url": "sample-trace",
+                            "variables": {
+                                "mySubmissionTimeVariable_string": "MyFavoriteFootballTeams",
+                                "stv_strings": ["Vikings,Packers,Lions,Bears"],
+                                "STREAMS_OPT_TRACE_LEVEL" : "3"
+                            }
+                        }
+                    ]
+                }       
+        ```
 
 1. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
 
