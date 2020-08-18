@@ -152,6 +152,7 @@ While the steps are the same for both scenarios, the detailed steps has some dif
                 - verify that there is entry for a deployment
 
 1. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
+
         The system log file contains several messages from many different sources.  To filter off what you are interested requires using grep'g techniques.
             - See all messages for service
                 - cat /var/log/syslog | grep image-name
