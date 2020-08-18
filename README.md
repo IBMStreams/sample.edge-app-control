@@ -152,6 +152,13 @@ While the steps are the same for both scenarios, the detailed steps has some dif
                 - verify that there is entry for a deployment
 
 1. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
+        The system log file contains several messages from many different sources.  To filter off what you are interested requires using grep'g techniques.
+            - See all messages for service
+                - cat /var/log/syslog | grep image-name
+            - See all trace messages for service - trace statements
+                - cat /var/log/syslog | grep image-name | grep apptrc
+                    Notice the xxx statements produced from the application trace statements.
+                    Notice also that they contain the variable values that we inputted.
 
 
 
@@ -238,8 +245,7 @@ While the steps are the same for both scenarios, the detailed steps has some dif
 
 1. Deploy application package to an Edge node 
     - ssh to CP4D Edge node chosen for deployment and perform the following steps.  For more information, see the "Deploying using Edge Application Manager" topic.  The values for the submission time variables from the application will be specified during deployment.
-        1. vi userinput.json
-        1. add the following json to it.
+        1. vi userinput.json and add the following json to it.
         
         ```
                 {
