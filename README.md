@@ -194,22 +194,22 @@ While the steps are the same for both scenarios, the detailed steps has some dif
             1. vi horizon/service.definition.json
             1. insert the following into the "userInput" array
                 `
-		`{
-			"name": "mySubmissionTimeVariable_string",
-			"type": "string",
-			"defaultValue": "defaultValue"
-		},
-		{
-			"name": "mySubmissionTimeVariable_listOfStrings",
-			"type": "list of strings",
-			"defaultValue": "defaultFirstListElement,defaultSecondListElement"
-		},
-        {
-            "name": "STREAMS_OPT_TRACE_LEVEL",
-            "label" : "Tracing level: 0=OFF, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG, 5=TRACE",
-            "type": "string",
-            "defaultValue": "4"
-        }`
+		           {
+			         "name": "mySubmissionTimeVariable_string",
+			         "type": "string",
+			         "defaultValue": "defaultValue"
+		          },
+		          {
+			         "name": "mySubmissionTimeVariable_listOfStrings",
+			         "type": "list of strings",
+			         "defaultValue": "defaultFirstListElement,defaultSecondListElement"
+		          },
+                  {
+                    "name": "STREAMS_OPT_TRACE_LEVEL",
+                    "label" : "Tracing level: 0=OFF, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG, 5=TRACE",
+                    "type": "string",
+                    "defaultValue": "4"
+                    }
         
             
 
