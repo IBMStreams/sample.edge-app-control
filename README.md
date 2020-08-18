@@ -181,6 +181,36 @@ While the steps are the same for both scenarios, the detailed steps has some dif
             - export OCP_USER="cpd-admin-sa"
             - export OCP_DOCKER_HOST=_default-route-to-openshift-image-registry_
             - export OCP_TOKEN=_cpd-admin-sa_openshift-token_
+            - export IMAGE_PREFIX=_imagePrefix_   // from build step
+        1. Login to OpenShift and Docker
+            - oc login _openshift_cluster_url:port_ --token $OCP_TOKEN --insecure-skip-tls-verify=true
+            - docker login $OCP_DOCKER_HOST --username $OCP_USER --password $(oc whoami -t)
+        1. Pull the edge application image to the development node
+            - docker pull $OCP_DOCKER_HOST/$IMAGE_PREFIX/tradeswithlogtrace:1.0
+        1. Create EAM service project
+            1. mkdir app_control_sample; cd app_control_sample
+            1. hzn dev service new -s app-control-sample-service -V 1.0 --noImageGen -i $OCP_DOCKER_HOST/$IMAGE_PREFIX/tradeswithlogtrace:1.0
+        1. Add submission time variables and runtime-option:trace
+            1. vi horizon/service.definition.json
+            1. insert the following into the "userInput" array
+                `
+		`{
+			"name": "mySubmissionTimeVariable_string",
+			"type": "string",
+			"defaultValue": "defaultValue"
+		},
+		{
+			"name": "mySubmissionTimeVariable_listOfStrings",
+			"type": "list of strings",
+			"defaultValue": "defaultFirstListElement,defaultSecondListElement"
+		},
+        {
+            "name": "STREAMS_OPT_TRACE_LEVEL",
+            "label" : "Tracing level: 0=OFF, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG, 5=TRACE",
+            "type": "string",
+            "defaultValue": "4"
+        }`
+        
             
 
 1. Deploy application package to an Edge node 
