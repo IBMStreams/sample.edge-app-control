@@ -193,7 +193,7 @@ While the steps are the same for both scenarios, the detailed steps has some dif
         1. Add submission time variables and runtime-option:trace
             1. vi horizon/service.definition.json
             1. insert the following into the "userInput" array
-                `
+                ```
 		           {
 			         "name": "mySubmissionTimeVariable_string",
 			         "type": "string",
@@ -210,6 +210,7 @@ While the steps are the same for both scenarios, the detailed steps has some dif
                     "type": "string",
                     "defaultValue": "4"
                     }
+                ```
         
             
 
