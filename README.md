@@ -192,26 +192,48 @@ While the steps are the same for both scenarios, the detailed steps has some dif
             1. hzn dev service new -s app-control-sample-service -V 1.0 --noImageGen -i $OCP_DOCKER_HOST/$IMAGE_PREFIX/tradeswithlogtrace:1.0
         1. Add submission time variables and runtime-option:trace
             1. vi horizon/service.definition.json
-            1. insert the following into the "userInput" array
+            1. insert the following into the "userInput" array such that it looks like this:
                 ```
-		           {
-			         "name": "mySubmissionTimeVariable_string",
-			         "type": "string",
-			         "defaultValue": "defaultValue"
-		          },
-		          {
-			         "name": "mySubmissionTimeVariable_listOfStrings",
-			         "type": "list of strings",
-			         "defaultValue": "defaultFirstListElement,defaultSecondListElement"
-		          },
-                  {
-                    "name": "STREAMS_OPT_TRACE_LEVEL",
-                    "label" : "Tracing level: 0=OFF, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG, 5=TRACE",
-                    "type": "string",
-                    "defaultValue": "4"
+                {
+                    "org": "$HZN_ORG_ID",
+                    "label": "$SERVICE_NAME for $ARCH",
+                    "description": "",
+                    "public": true,
+                    "documentation": "",
+                    "url": "$SERVICE_NAME",
+                    "version": "$SERVICE_VERSION",
+                    "arch": "$ARCH",
+                    "sharable": "multiple",
+                    "requiredServices": [],
+                    "userInput": [
+		                  {
+			                 "name": "mySubmissionTimeVariable_string",
+			                 "type": "string",
+			                 "defaultValue": "defaultValue"
+		                  },
+		                  {
+			                 "name": "mySubmissionTimeVariable_listOfStrings",
+			                 "type": "list of strings",
+			                 "defaultValue": "defaultFirstListElement,defaultSecondListElement"
+		                  },
+                            {
+                                "name": "STREAMS_OPT_TRACE_LEVEL",
+                                "label" : "Tracing level: 0=OFF, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG, 5=TRACE",
+                                "type": "string",
+                                "defaultValue": "1"
+                            }
+                    ],
+                    "deployment": {
+                        "services": {
+                            "tradesappcloud-withlogtrace": {
+                            "image": "$OCP_DOCKER_HOST/$IMAGE_PREFIX/tradesappcloud-withlogtrace:1.0",
+                            "privileged": false,
+                            "network": ""
+                            }
+                        }
                     }
+                }
                 ```
-        
             
 
 1. Deploy application package to an Edge node 
