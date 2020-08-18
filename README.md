@@ -135,7 +135,7 @@ This sample will show how to develop and deploy the application with and without
         1. Add Application packages
             | Field | Value |
             | ----- | ----- |
-            | Name | app-control-sample | 
+            | Name | app control sample | 
             | Version | 1.0 |
             | Image reference | tradesappcloud-withlogtrace:1.0 | 
         1. Scroll down to Additional attributes > Environment variables
@@ -144,16 +144,21 @@ This sample will show how to develop and deploy the application with and without
             | ------------- | ----- |
             | mySubmissionTimeVariable_string | My-favorite-football-teams |
             | mySubmissionTimeVariable_listOfStrings | Vikings,Packers,Lions,Bears |
-            | STREAMS_OPT_TRACE_LEVEL | 3  |  
+            | STREAMS_OPT_TRACE_LEVEL | 3  | 
+        1. Save
     
-    
-    The values for the submission time variables discovered above in step#1 will be included in the resulting application package. To set these. 
-        - mySubmissionTimeVariable_string
 
 1. Deploy application package to an Edge node 
     - If EAM scenario, ssh to CP4D Edge node chosen for deployment and perform the steps described in the "Deploying using Edge Application Manager".  The values for the submission time variables from the application will be specified during deployment.
     
-    - If CPD scenario, login to CP4D Console, and perform the steps described in the "Deploying using Cloud Pak for Data" topic. The values for the submission time variables can not be changed at this time.
+    - If CPD scenario, login to CP4D Console, and perform these steps. For more informations, see "Deploying using Cloud Pak for Data" topic. The values for the submission time variables can not be changed at this time.
+        1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
+        1. Go to row with "app control sample" > select three dots at end for row > Deploy to edge
+        1. Select check box for remote system to deploy to.
+        1. Select Deploy option.
+        1. Select "app control sample"
+        1. Look at Application instances
+            - verify that there is entry for a deployment
 
 1. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
 
