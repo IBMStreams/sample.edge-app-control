@@ -120,7 +120,7 @@ While the steps are the same for both scenarios, the detailed steps has some dif
     To see list of Edge nodes that have been tethered to this CPD instance, do these steps:
     1. login in to CPD Console
     1. Select Navigation Menu > Analyze > Edge Analytics > Remote systems
-        This will display a list of the available nodes. Select one of the analytics-micro-edge-system type nodes.
+        This will display a list of the available nodes. Select one of the _analytics-micro-edge-system_ type nodes.
 
 1. Develop / Publish application package 
     
@@ -136,7 +136,7 @@ While the steps are the same for both scenarios, the detailed steps has some dif
         
             | Variable Name | Value |
             | ------------- | ----- |
-            | mySubmissionTimeVariable_string | My-favorite-football-teams |
+            | mySubmissionTimeVariable_string | MyFavoriteFootballTeams |
             | mySubmissionTimeVariable_listOfStrings | Vikings,Packers,Lions,Bears |
             | STREAMS_OPT_TRACE_LEVEL | 3  | 
         1. Save
@@ -170,13 +170,21 @@ While the steps are the same for both scenarios, the detailed steps has some dif
     To see list of Edge nodes that have been tethered to this CPD instance, do these steps:
     1. login in to CPD Console
     1. Select Navigation Menu > Analyze > Edge Analytics > Remote systems
-        This will display a list of the available nodes.  Select one of the ieam-analytics-micro-edge-system type nodes for the development system.  Also, select one of these for the deployment system.  It can be the same system.
+        This will display a list of the available nodes.  Select one of the _ieam-analytics-micro-edge-system_ type nodes for the development system.  Also, select one of these for the deployment system.  It can be the same system.
 
 1. Develop / Publish application package 
-    - ssh to CP4D Edge node chosen for development and perform the steps described in the "Packaging an edge application service for deployment by using Edge Application Manager".  The submission time variables from the application discovered in step #1 above will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
+    - ssh to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application discovered in step #1 above will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
+        1. Install the OpenShift® command-line interface. See xxxx.
+        1. Setup the environment variables
+            - eval export $(cat agent-install.cfg)
+            - export HZN_EXCHANGE_USER_AUTH= _my_eam_api_key_
+            - export OCP_USER="cpd-admin-sa"
+            - export OCP_DOCKER_HOST=_default-route-to-openshift-image-registry_
+            - export OCP_TOKEN=_cpd-admin-sa_openshift-token_
+            
 
 1. Deploy application package to an Edge node 
-    - ssh to CP4D Edge node chosen for deployment and perform the steps described in the "Deploying using Edge Application Manager".  The values for the submission time variables from the application will be specified during deployment.
+    - ssh to CP4D Edge node chosen for deployment and perform the following steps.  For more information, see the "Deploying using Edge Application Manager" topic.  The values for the submission time variables from the application will be specified during deployment.
 
 1. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
 
