@@ -78,17 +78,94 @@ This sample will show how to develop and deploy the application with and without
 1. Develop Application
 1. Build Application for the Edge
 1. Select Edge nodes to use
-1. Develop/Publish Application Package
-    - The generic term "Application Package" will be used in the top level step description.  The specific terms used in the different scenarios will be tailored to that scenario. 
-    - The detailed steps for each of the scenarios will be described separately.
-1. Deploy Application Package
-    - The detailed steps for each of the scenarios will be described separately.
+1. Develop/Publish Application
+1. Deploy Application
 1. View log
 
+While the steps are the same for both scenarios, the detailed steps has some differences in them.  These detailed flows will be described separately.  
+
+### Scenario#1 - Develop and deploy application without IBM Edge Application Manager
+
+![non-EAM Deploy](./images/DeployAppPkg-withoutEAM.png)
+
+1. Develop application (via VS Code)
+
+    In this sample we use a predefined sample application called "TracesAppCloud.spl".  It is an SPL application that shows a simple SPL application that reads some stock ticker entries, does a simple calculation on them, and then writes them out. It will continue doing this in a loop.
+
+    For the purpose of this sample, some additional statements have been added to the application to show examples of how to define and reference submission time variables, and how to add application trace statements to output these values into the application log.
+    
+    Search for "LOOK HERE" to see the section of the application that is most relative to this sample.
+    
+    Notice the names for the two submission time variable names as they will be needed later on. 
+    - _mySubmissionTimeVariable_string_
+    - _mySubmissionTimeVariable_listOfStrings_
+    
+    Note: if there is a naming conflict with submission time variables with different parts of the your application, or if you do not have access to the application source code, you will need to retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic.  The information retrieved by performing these for this sample application are shown in the attached files:
+        - config-files/app-definition.json
+        - runtime-options.json
+    
+    ![App Snippet](./images/App_snippet.png)
+    
+    To further demonstrate, you may customize the "yourName" string in the application to see how it gets printed to the output log.
+    
+1. Build application for the Edge (via VS Code)
+    - Use the VSCode tool to compile the SPL application code, and ultimately build into a Docker image.
+        1. Right click in the TradesAppCloud_withLogTrace application, and select "Build"
+            - Monitor the console output until the "Successfully build the application" message is displayed
+        1. Right click in the TradesAppCloud_withLogTrace application, and select "Build Edge Application Image"
+            - When prompted, select the base image that contains "streams-edge-base-application", and enter "tradesappcloud-withlogtrace" for image name, and "1.0" for image tag
+            - Invoke "Build image"
+            - Monitor the console output until "Successfully built the edge application image", and take note of the imagePrefix from the Image Details.
+        
+1. Select Edge Node(s) for development and deployment (via CP4D Console)
+    To see list of Edge nodes that have been tethered to this CPD instance, do these steps:
+    1. login in to CPD Console
+    1. Select Navigation Menu > Analyze > Edge Analytics > Remote systems
+        This will display a list of the available nodes of two types:
+            - analytics-micro-edge-system = Edge nodes for non-EAM scenario
+            - ieam-analytics-micro-edge-system = Edge nodes for EAM scenario
+
+1. Develop / Publish application package 
+    - If EAM scenario, ssh to CP4D Edge node chosen for development and perform the steps described in the "Packaging an edge application service for deployment by using Edge Application Manager".  The submission time variables from the application discovered in step #1 above will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
+    
+    - If CPD scenario, login to CP4D Console, and perform these steps. For more informations, see "Packaging using Cloud Pak for Data" topic. 
+        1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
+        1. Add Application packages
+            | Field | Value |
+            | ----- | ----- |
+            | Name | app control sample | 
+            | Version | 1.0 |
+            | Image reference | tradesappcloud-withlogtrace:1.0 | 
+        1. Scroll down to Additional attributes > Environment variables
+        
+            | Variable Name | Value |
+            | ------------- | ----- |
+            | mySubmissionTimeVariable_string | My-favorite-football-teams |
+            | mySubmissionTimeVariable_listOfStrings | Vikings,Packers,Lions,Bears |
+            | STREAMS_OPT_TRACE_LEVEL | 3  | 
+        1. Save
+    
+
+1. Deploy application package to an Edge node 
+    - If EAM scenario, ssh to CP4D Edge node chosen for deployment and perform the steps described in the "Deploying using Edge Application Manager".  The values for the submission time variables from the application will be specified during deployment.
+    
+    - If CPD scenario, login to CP4D Console, and perform these steps. For more informations, see "Deploying using Cloud Pak for Data" topic. The values for the submission time variables can not be changed at this time.
+        1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
+        1. Go to row with "app control sample" > select three dots at end for row > Deploy to edge
+        1. Select check box for remote system to deploy to.
+        1. Select Deploy option.
+        1. Select "app control sample"
+        1. Look at Application instances
+            - verify that there is entry for a deployment
+
+1. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
+
+
+### Scenario#2 - Develop and deploy application with IBM Edge Application Manager
 
 ![EAM Deploy](./images/DeployAppPackage-withEAM.png)
 
-![non-EAM Deploy](./images/DeployAppPkg-withoutEAM.png)
+
 
 1. Develop application (via VS Code)
 
