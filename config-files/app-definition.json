@@ -1,0 +1,15 @@
+{
+	"name": "application::TradesAppCloud_withLogTrace",
+	"userInput": [
+		{
+			"name": "mySubmissionTimeVariable_string",
+			"type": "string",
+			"defaultValue": "defaultValue"
+		},
+		{
+			"name": "mySubmissionTimeVariable_listOfStrings",
+			"type": "list of strings",
+			"defaultValue": "defaultFirstListElement,defaultSecondListElement"
+		}
+	]
+}
