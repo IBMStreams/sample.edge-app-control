@@ -129,60 +129,60 @@ Notice the names for the two submission time variable names as they will be need
 Change the "yourName" string to something of your choosing.  This will allow you to see how it gets printed to the log. 
     
 #### 2. Build application for the Edge (via VS Code)
-- Use the VSCode tool to compile the SPL application code, and ultimately build into a Docker image.
-    1. Right click in the TradesAppCloud_withLogTrace application, and select "Build"
-        - Monitor the console output until the "Successfully build the application" message is displayed
-    1. Right click in the TradesAppCloud_withLogTrace application, and select "Build Edge Application Image"
-        - When prompted, select the base image that contains "streams-edge-base-application", and enter "tradesappcloud-withlogtrace" for image name, and "1.0" for image tag
-        - Invoke "Build image"
-        - Monitor the console output until "Successfully built the edge application image", and take note of the imagePrefix from the Image Details.
+Use the VSCode tool to compile the SPL application code, and ultimately build into a Docker image.
+1. Right click in the TradesAppCloud_withLogTrace application, and select "Build"
+    - Monitor the console output until the "Successfully build the application" message is displayed
+1. Right click in the TradesAppCloud_withLogTrace application, and select "Build Edge Application Image"
+    - When prompted, select the base image that contains "streams-edge-base-application", and enter "tradesappcloud-withlogtrace" for image name, and "1.0" for image tag
+    - Invoke "Build image"
+    - Monitor the console output until "Successfully built the edge application image", and take note of the imagePrefix from the Image Details.
         
 #### 3. Select Edge Node(s) for development and deployment (via CP4D Console)
-    To see list of Edge nodes that have been tethered to this CPD instance, do these steps:
-    1. login in to CPD Console
-    1. Select Navigation Menu > Analyze > Edge Analytics > Remote systems
-        This will display a list of the available nodes. Select one of the _analytics-micro-edge-system_ type nodes.
+To see list of Edge nodes that have been tethered to this CPD instance, do these steps:
+1. login in to CPD Console
+1. Select Navigation Menu > Analyze > Edge Analytics > Remote systems
+    This will display a list of the available nodes. Select one of the _analytics-micro-edge-system_ type nodes.
 
 #### 4. Develop / Publish application package 
     
-    - From CP4D Console, perform these steps. For more information, see "Packaging using Cloud Pak for Data" topic. 
-        1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
-        1. Add Application packages
-            | Field | Value |
-            | ----- | ----- |
-            | Name | app control sample | 
-            | Version | 1.0 |
-            | Image reference | trades-withtrace:1.0 | 
-        1. Scroll down to Additional attributes > Environment variables
+- From CP4D Console, perform these steps. For more information, see "Packaging using Cloud Pak for Data" topic. 
+    1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
+    1. Add Application packages
+        | Field | Value |
+        | ----- | ----- |
+        | Name | app control sample | 
+        | Version | 1.0 |
+        | Image reference | trades-withtrace:1.0 | 
+    1. Scroll down to Additional attributes > Environment variables
         
-            | Variable Name | Value |
-            | ------------- | ----- |
-            | mySubmissionTimeVariable_string | MyFavoriteFootballTeams |
-            | mySubmissionTimeVariable_listOfStrings | Vikings,Packers,Lions,Bears |
-            | STREAMS_OPT_TRACE_LEVEL | 3  | 
-        1. Save
+        | Variable Name | Value |
+        | ------------- | ----- |
+        | mySubmissionTimeVariable_string | MyFavoriteFootballTeams |
+        | mySubmissionTimeVariable_listOfStrings | Vikings,Packers,Lions,Bears |
+        | STREAMS_OPT_TRACE_LEVEL | 3  | 
+    1. Save
     
 #### 5. Deploy application package to an Edge node 
-    - From CP4D Console perform these steps. For more informations, see "Deploying using Cloud Pak for Data" topic. The values for the submission time variables can not be changed at this time.
-        1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
-        1. Go to row with "app control sample" > select three dots at end for row > Deploy to edge
-            1. Select check box for remote system to deploy to.
-            1. Select Deploy option.
-        1. Select "app control sample"
-            1. Look at Application instances
-                - verify that there is entry for a deployment
+From CP4D Console perform these steps. For more informations, see "Deploying using Cloud Pak for Data" topic. The values for the submission time variables can not be changed at this time.
+    1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
+    1. Go to row with "app control sample" > select three dots at end for row > Deploy to edge
+        1. Select check box for remote system to deploy to.
+        1. Select Deploy option.
+    1. Select "app control sample"
+        1. Look at Application instances
+            - verify that there is entry for a deployment
 
 #### 6. View the runtime logs
-    - From CP4D Console, perform these steps.  For more information, see ".... logs ...." topic.
-        1. Select CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
-        1. Select "app control sample'
-        1. Scroll down to Application instances.
-        1. Goto row for edge node that you would like to see log for, and select three dots at clear right part of row.
-            1. Select Download logs.
-        1. Unzip downloaded log package.
-        1. Open up app-control-sample-xxxx.log file
-            - This file contains a variety of statements.  The standard println output will be in this log, as well as the output from the trace statements.  Search for "USER-NAME" for example of println output. The trace statements will contain "#splapptrc".  
-            - Here is a snippet of the log. Notice that the input variables that were supplied made it to the application and were output to this log file. (e.g. MyFavoriteFootballTeams). Also, notice that the DEBUG-LEVEL message was not in the log.  This means the STREAMS_OPT_TRACE_LEVEL runtime-option that set the level to INFO made it to the application as well. 
+From CP4D Console, perform these steps.  For more information, see ".... logs ...." topic.
+    1. Select CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
+    1. Select "app control sample'
+    1. Scroll down to Application instances.
+    1. Goto row for edge node that you would like to see log for, and select three dots at clear right part of row.
+        1. Select Download logs.
+    1. Unzip downloaded log package.
+    1. Open up app-control-sample-xxxx.log file
+        - This file contains a variety of statements.  The standard println output will be in this log, as well as the output from the trace statements.  Search for "USER-NAME" for example of println output. The trace statements will contain "#splapptrc".  
+        - Here is a snippet of the log. Notice that the input variables that were supplied made it to the application and were output to this log file. (e.g. MyFavoriteFootballTeams). Also, notice that the DEBUG-LEVEL message was not in the log.  This means the STREAMS_OPT_TRACE_LEVEL runtime-option that set the level to INFO made it to the application as well. 
 
 ```
 2020-08-19T10:07:10.064038778-07:00 stdout F 19 Aug 2020 17:07:10.063+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:82]  - mySubmissionTimeVariable_string =MyFavoriteFootballTeams
@@ -198,51 +198,51 @@ Change the "yourName" string to something of your choosing.  This will allow you
 ```
               
 #### 7. Un-deploy application
-    - From CP4D Console, perform these steps.  For more information, see "Deleting an application deployment" topic.
-        1. Select CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
-        1. Select "app control sample'
-        1. Scroll down to Application instances.
-        1. Goto row for edge node that you would like to delete, and select three dots at clear right part of row.
-            1. Select Delete
+From CP4D Console, perform these steps.  For more information, see "Deleting an application deployment" topic.
+    1. Select CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
+    1. Select "app control sample'
+    1. Scroll down to Application instances.
+    1. Goto row for edge node that you would like to delete, and select three dots at clear right part of row.
+        1. Select Delete
 
 ### Scenario#2 - Develop and deploy application with IBM Edge Application Manager
 
 ![EAM Deploy](./images/DeployAppPackage-withEAM.png)
 
-1. Develop application (via VS Code)
-    - same as Scenario#1
+#### 1. Develop application (via VS Code)
+- same as Scenario#1
     
-1. Build application for the Edge (via VS Code)
-    - same as Scenario#1
+#### 2. Build application for the Edge (via VS Code)
+- same as Scenario#1
         
-1. Select Edge Node(s) for development and deployment (via CP4D Console)
-    To see list of Edge nodes that have been tethered to this CPD instance, do these steps:
-    1. login in to CPD Console
-    1. Select Navigation Menu > Analyze > Edge Analytics > Remote systems
-        This will display a list of the available nodes.  Select one of the _ieam-analytics-micro-edge-system_ type nodes for the development system.  Also, select one of these for the deployment system.  It can be the same system.
+#### 3. Select Edge Node(s) for development and deployment (via CP4D Console)
+To see list of Edge nodes that have been tethered to this CPD instance, do these steps:
+1. login in to CPD Console
+1. Select Navigation Menu > Analyze > Edge Analytics > Remote systems
+    This will display a list of the available nodes.  Select one of the _ieam-analytics-micro-edge-system_ type nodes for the development system.  Also, select one of these for the deployment system.  It can be the same system.
 
-1. Develop / Publish application package 
-    - ssh to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application discovered in step #1 above will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
-        1. Install the OpenShift® command-line interface. See xxxx.
-        1. Setup the environment variables
-            - eval export $(cat agent-install.cfg)
-            - export HZN_EXCHANGE_USER_AUTH= _my_eam_api_key_
-            - export OCP_USER="cpd-admin-sa"
-            - export OCP_DOCKER_HOST=_default-route-to-openshift-image-registry_
-            - export OCP_TOKEN=_cpd-admin-sa_openshift-token_
-            - export IMAGE_PREFIX=_imagePrefix_   // from build step
-        1. Login to OpenShift and Docker
-            - oc login _openshift_cluster_url:port_ --token $OCP_TOKEN --insecure-skip-tls-verify=true
-            - docker login $OCP_DOCKER_HOST --username $OCP_USER --password $(oc whoami -t)
-        1. Pull the edge application image to the development node
-            - docker pull $OCP_DOCKER_HOST/$IMAGE_PREFIX/tradeswithlogtrace:1.0
-        1. Create EAM service project
-            1. mkdir app_control_sample; cd app_control_sample
-            1. hzn dev service new -s app-control-sample-service -V 1.0 --noImageGen -i $OCP_DOCKER_HOST/$IMAGE_PREFIX/tradeswithlogtrace:1.0
-        1. Add submission time variables and runtime-option:trace
-            1. vi horizon/service.definition.json
-            1. insert the submission time variables into the "userInput" array such that it looks like this:
-                ```
+#### 4. Develop / Publish application package 
+- ssh to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application discovered in step #1 above will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
+    1. Install the OpenShift® command-line interface. See xxxx.
+    1. Setup the environment variables
+        - eval export $(cat agent-install.cfg)
+        - export HZN_EXCHANGE_USER_AUTH= _my_eam_api_key_
+        - export OCP_USER="cpd-admin-sa"
+        - export OCP_DOCKER_HOST=_default-route-to-openshift-image-registry_
+        - export OCP_TOKEN=_cpd-admin-sa_openshift-token_
+        - export IMAGE_PREFIX=_imagePrefix_   // from build step
+    1. Login to OpenShift and Docker
+        - oc login _openshift_cluster_url:port_ --token $OCP_TOKEN --insecure-skip-tls-verify=true
+        - docker login $OCP_DOCKER_HOST --username $OCP_USER --password $(oc whoami -t)
+    1. Pull the edge application image to the development node
+        - docker pull $OCP_DOCKER_HOST/$IMAGE_PREFIX/tradeswithlogtrace:1.0
+    1. Create EAM service project
+        1. mkdir app_control_sample; cd app_control_sample
+        1. hzn dev service new -s app-control-sample-service -V 1.0 --noImageGen -i $OCP_DOCKER_HOST/$IMAGE_PREFIX/tradeswithlogtrace:1.0
+    1. Add submission time variables and runtime-option:trace
+        1. vi horizon/service.definition.json
+        1. insert the submission time variables into the "userInput" array such that it looks like this:
+             ```
                 {
                     "org": "$HZN_ORG_ID",
                     "label": "$SERVICE_NAME for $ARCH",
@@ -285,9 +285,9 @@ Change the "yourName" string to something of your choosing.  This will allow you
                 ```
             
 
-1. Deploy application package to an Edge node 
-    - ssh to CP4D Edge node chosen for deployment and perform the following steps.  For more information, see the "Deploying using Edge Application Manager" topic.  The values for the submission time variables from the application will be specified during deployment.
-        1. vi userinput.json and add the following json to it.
+#### 5. Deploy application package to an Edge node 
+- ssh to CP4D Edge node chosen for deployment and perform the following steps.  For more information, see the "Deploying using Edge Application Manager" topic.  The values for the submission time variables from the application will be specified during deployment.
+    1. vi userinput.json and add the following json to it.
         
         ```
                 {
@@ -305,8 +305,9 @@ Change the "yourName" string to something of your choosing.  This will allow you
                 }       
         ```
 
-1. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
-    - same as Scenario#1
+#### 6. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
+- same as Scenario#1
+
 
 The system log file contains several messages from many different sources.  To filter off what you are interested requires using grep'g techniques.
 - See all messages for service
@@ -316,7 +317,7 @@ The system log file contains several messages from many different sources.  To f
         Notice the xxx statements produced from the application trace statements.
         Notice also that they contain the variable values that we inputted.
         
-1. Undeploy application
+#### 7. Un-deploy application
 
 
 ## Additional Resources
