@@ -49,16 +49,15 @@ The SPL sample application has two submission time variables defined in it.  It 
                 - _eam-api-key_
     - Reference Openshift administrator
     
-        - Openshift cluster url & credentials 
+        - Gather Openshift cluster url & credentials 
             - _openshift-cluster-url:port_
             - _default-route-to-openshift-image-registry_
             - _openshift-token-for-cpd-admin-sa_
-
-            
-* Clone this repository or download the source archive. 
+         
+6. Clone this repository or download the source archive. 
    
    
-* Install and setup the Visual Studio Code (VSCode) tool. 
+7. Install and setup the Visual Studio Code (VSCode) tool. 
     1. Install and setup VS Code. See the "Installation and setup" section of this reference: 
 <http://ibmstreams.github.io/streamsx.documentation/docs/spl/quick-start/qs-1b/>
     1. Follow instructions in the "Add a Streams instance: IBM Cloud Pak for Data deployment" section
