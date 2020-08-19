@@ -86,11 +86,11 @@ composite TradesAppCloud_withLogTrace
 						}
 						// notice the following trace statement is 'debug' level, 
 						//    & will only show in log when trace level is 'debug' or 'trace'
-						appTrc(spl::Trace.debug, "*** debug level of trace message *** ");
+						appTrc(spl::Trace.debug, "*** DEBUG-LEVEL of trace message *** ");
 
 						// add some print lines - modify "yourName" below if you would like to customize the output.
 						printStringLn("Average asking price for " + ticker + "  is " + (rstring) average);
-						printStringLn("This sample is being is being tried out by: " + "yourName");
+						printStringLn("This sample is being is being tried out by: USER-NAME= " + "yourName");
 
 						// submit the tuple
 						submit(AvgPrice, PrintAvPrice);						

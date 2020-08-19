@@ -58,6 +58,7 @@ This sample will show how to develop and deploy an Edge application in an CPD en
 1. Develop/Publish Application
 1. Deploy Application to Edge nodes
 1. View log
+1. Undeploy Application
 
 While the steps are the same for both scenarios, the detailed steps have some differences in them.  These detailed flows will be described separately.  
 
@@ -94,11 +95,11 @@ While the steps are the same for both scenarios, the detailed steps have some di
                         
     // notice the following trace statement is 'debug' level, 
     //    & will only show in log when trace level is 'debug' or 'trace'
-    appTrc(spl::Trace.debug, "*** debug level of trace message *** ");
+    appTrc(spl::Trace.debug, "*** DEBUG-LEVEL of trace message ***");
 
     // add some print lines - modify "yourName" below if you would like to customize the output.
     printStringLn("Average asking price for " + ticker + "  is " + (rstring) average);
-    printStringLn("This sample is being is being tried out by: " + "yourName");
+    printStringLn("This sample is being is being tried out by: USER-NAME= " + "yourName");
 
     // submit the tuple
     submit(AvgPrice, PrintAvPrice);						
@@ -110,7 +111,7 @@ Note: if there is a naming conflict with submission time variables with differen
     - config-files/app-definition.json
     - config-files/runtime-options.json
     
-    To further demonstrate, you may customize the "yourName" string in the application to see how it gets printed to the output log.
+To further demonstrate, you may customize the "yourName" string in the application to see how it gets printed to the output log.
     
 1. Build application for the Edge (via VS Code)
     - Use the VSCode tool to compile the SPL application code, and ultimately build into a Docker image.
@@ -129,14 +130,14 @@ Note: if there is a naming conflict with submission time variables with differen
 
 1. Develop / Publish application package 
     
-    - Login to CP4D Console, and perform these steps. For more informations, see "Packaging using Cloud Pak for Data" topic. 
+    - From CP4D Console, perform these steps. For more information, see "Packaging using Cloud Pak for Data" topic. 
         1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
         1. Add Application packages
             | Field | Value |
             | ----- | ----- |
             | Name | app control sample | 
             | Version | 1.0 |
-            | Image reference | tradesappcloud-withlogtrace:1.0 | 
+            | Image reference | trades-withtrace:1.0 | 
         1. Scroll down to Additional attributes > Environment variables
         
             | Variable Name | Value |
@@ -147,7 +148,7 @@ Note: if there is a naming conflict with submission time variables with differen
         1. Save
     
 1. Deploy application package to an Edge node 
-    - Login to CP4D Console, and perform these steps. For more informations, see "Deploying using Cloud Pak for Data" topic. The values for the submission time variables can not be changed at this time.
+    - From CP4D Console perform these steps. For more informations, see "Deploying using Cloud Pak for Data" topic. The values for the submission time variables can not be changed at this time.
         1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
         1. Go to row with "app control sample" > select three dots at end for row > Deploy to edge
             1. Select check box for remote system to deploy to.
@@ -157,14 +158,39 @@ Note: if there is a naming conflict with submission time variables with differen
                 - verify that there is entry for a deployment
 
 1. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
+    - From CP4D Console, perform these steps.  For more information, see ".... logs ...." topic.
+        1. Select CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
+        1. Select "app control sample'
+        1. Scroll down to Application instances.
+        1. Goto row for edge node that you would like to see log for, and select three dots at clear right part of row.
+            1. Select Download logs.
+        1. Unzip log package.
+        1. Open up app-control-sample-xxxx.log file
+            - note:
+                - trace statements will have "#splapptrc".  Notice that the input variables that were supplied made it to the application (e.g. MyFavoriteFootballTeams), and that the DEBUG-LEVEL message was not in the log.  This means the  STREAMS_OPT_TRACE_LEVEL level runtime-option made it to the application as well.  The println statement outputs are also collected in this log.  Search for "USER-NAME".
 
-        The system log file contains several messages from many different sources.  To filter off what you are interested requires using grep'g techniques.
-            - See all messages for service
-                - cat /var/log/syslog | grep image-name
-            - See all trace messages for service - trace statements
-                - cat /var/log/syslog | grep image-name | grep apptrc
-                    Notice the xxx statements produced from the application trace statements.
-                    Notice also that they contain the variable values that we inputted.
+```
+2020-08-19T10:07:10.064038778-07:00 stdout F 19 Aug 2020 17:07:10.063+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:82]  - mySubmissionTimeVariable_string =MyFavoriteFootballTeams
+2020-08-19T10:07:10.066033579-07:00 stdout F 19 Aug 2020 17:07:10.063+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:83]  - mySubmissionTimeVariable_listOfStrings var: 
+2020-08-19T10:07:10.066033579-07:00 stdout F 19 Aug 2020 17:07:10.064+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:85]  -    String element: Vikings
+2020-08-19T10:07:10.066033579-07:00 stdout F 19 Aug 2020 17:07:10.064+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:85]  -    String element: Packers
+2020-08-19T10:07:10.066033579-07:00 stdout F 19 Aug 2020 17:07:10.065+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:85]  -    String element: Lions
+2020-08-19T10:07:10.066033579-07:00 stdout F 19 Aug 2020 17:07:10.065+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:85]  -    String element: Bears
+
+2020-08-19T10:07:10.066033579-07:00 stdout F This sample is being is being tried out by: USER-NAME=  yourName
+
+
+```
+
+The system log file contains several messages from many different sources.  To filter off what you are interested requires using grep'g techniques.
+- See all messages for service
+    - cat /var/log/syslog | grep image-name
+- See all trace messages for service - trace statements
+    - cat /var/log/syslog | grep image-name | grep apptrc
+        Notice the xxx statements produced from the application trace statements.
+        Notice also that they contain the variable values that we inputted.
+                    
+1. Undeploy application
 
 
 ### Scenario#2 - Develop and deploy application with IBM Edge Application Manager
