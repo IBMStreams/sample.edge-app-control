@@ -1,9 +1,5 @@
 # sample.edge-app-control
-Application control sample
 
-# Sample outline
-
-## Introduction
 The objective of this sample is to illustrate the steps involved with developing an SPL application for the Edge.  It will start with the application SPL source code, proceed to the application build process, followed by deployment (including configuration) to the edge nodes, and finish with examining the runtime output.
 
 The runtime behavior of a Streams Edge application may be configured at deployment time via the following two mechanisms.
@@ -22,9 +18,6 @@ This article will use an SPL sample application that has some submission time va
 
 ## Requirements/Information to collect 
 
-* The VSCode tool will be used in this sample. For more information on how to install and setup Visual Studio Code for use in this sample, see:  
-<http://ibmstreams.github.io/streamsx.documentation/docs/spl/quick-start/qs-1b/>
-
 * You will need the following information prior to starting this sample exercise:   
     - IBM Cloud Pak for Data information
         - **_web client URL_**: This is the URL used to access the IBM Cloud Pak for Data environment in your browser. It should be of the form: https://HOST:PORT (e.g., https://123.45.67.89:12345).
@@ -40,19 +33,25 @@ This article will use an SPL sample application that has some submission time va
             - _openshift-cluster-url:port_
             - _default-route-to-openshift-image-registry_
             - _openshift-token-for-cpd-admin-sa_
+            
+* Clone this repository or download the source archive. 
+   
+   
+* The VSCode tool will be used in this sample. For more information on how to install and setup Visual Studio Code, see the "Installation and setup" section of this reference: 
+<http://ibmstreams.github.io/streamsx.documentation/docs/spl/quick-start/qs-1b/>
 
 
 ## Steps 
 
-This sample will show how to develop and deploy the application with and without IBM Edge Application Manager.  The high level steps are the same for both of these scenarios.  
+This sample will show how to develop and deploy an Edge application with and without using the IBM Edge Application Manager.  The high level steps are the same for both of these scenarios.  
 1. Develop Application
 1. Build Application for the Edge
 1. Select Edge nodes to use
 1. Develop/Publish Application
-1. Deploy Application
+1. Deploy Application to Edge nodes
 1. View log
 
-While the steps are the same for both scenarios, the detailed steps has some differences in them.  These detailed flows will be described separately.  
+While the steps are the same for both scenarios, the detailed steps have some differences in them.  These detailed flows will be described separately.  
 
 ### Scenario#1 - Develop and deploy application without IBM Edge Application Manager
 
