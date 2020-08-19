@@ -1,3 +1,5 @@
+# (UNDER CONSTRUCTION - This sample and its instructions are under development)
+
 # sample.edge-app-control
 
 The objective of this sample is to illustrate the steps involved with developing an SPL application for the Edge.  It will start with the application SPL source code, proceed to the application build process, followed by deployment (including configuration) to the edge nodes, and finish with examining the runtime output.
