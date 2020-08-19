@@ -2,13 +2,13 @@
 
 The objective of this sample is to illustrate the steps involved with developing an SPL application for the Edge.  It will start with the application SPL source code, proceed to the application build process, followed by deployment (including configuration) to the edge nodes, and finish with examining the runtime output.
 
-The runtime behavior of a Streams Edge application may be configured at deployment time via the following two mechanisms.
+The sample will also show how the runtime behavior of a Streams Edge application can be configured at deployment time via the following two mechanisms.
 
 - **_submission time variables_**.  These are optional, application specific variables that are defined in the application. The application code determines how the values passed in for these variables at deployment time affects the behavior of the application at runtime.
 
 - **_runtime options_**.  These control more basic built-in capabilities and therefore available for every application.  The set of supported built-in options are described in [runtime-options](#runtime-options).
 
-This article will use an SPL sample application that has some submission time variables defined in it.  It will show how values for these variables, and the trace runtime-options, can be passed into the application at deploy time.  Also, it will show how the resulting trace statements can be viewed.
+The SPL sample application has two submission time variables defined in it.  It will show how values for these variables, and the trace runtime-options, can be passed into the application at deploy time.  Also, it will show how the resulting trace statements can be viewed.
 
 ## Skill Level 
 
