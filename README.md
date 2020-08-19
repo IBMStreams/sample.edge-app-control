@@ -89,15 +89,15 @@ While the steps are the same for both scenarios, the detailed steps have some di
 
 #### 1. Develop application (via VS Code)
 
-    The application used in this sample is a simple SPL application that reads stock ticker entries from a file, does a simple calculation on them, and then writes them out to a file. It will continue doing this in a loop.
+The application used in this sample is a simple SPL application that reads stock ticker entries from a file, does a simple calculation on them, and then writes them out to a file. It will continue doing this in a loop.
 
-    Some additional trace and println statements have been added to the application to show examples of how to define and reference submission time variables, and how to add application trace statements to output these values into the application log.
+Some additional trace and println statements have been added to the application to show examples of how to define and reference submission time variables, and how to add application trace statements to output these values into the application log.
     
-    Search for "LOOK HERE" to see the section of the application that is most relative to this sample.
+Search for "LOOK HERE" to see the section of the application that is most relative to this sample.
     
-    Notice the names for the two submission time variable names as they will be needed later on. 
-    - _mySubmissionTimeVariable_string_
-    - _mySubmissionTimeVariable_listOfStrings_
+Notice the names for the two submission time variable names as they will be needed later on. 
+- _mySubmissionTimeVariable_string_
+- _mySubmissionTimeVariable_listOfStrings_
         
 ```        
 { 
@@ -129,13 +129,13 @@ While the steps are the same for both scenarios, the detailed steps have some di
 Change the "yourName" string to something of your choosing.  This will allow you to see how it gets printed to the log. 
     
 #### 2. Build application for the Edge (via VS Code)
-    - Use the VSCode tool to compile the SPL application code, and ultimately build into a Docker image.
-        1. Right click in the TradesAppCloud_withLogTrace application, and select "Build"
-            - Monitor the console output until the "Successfully build the application" message is displayed
-        1. Right click in the TradesAppCloud_withLogTrace application, and select "Build Edge Application Image"
-            - When prompted, select the base image that contains "streams-edge-base-application", and enter "tradesappcloud-withlogtrace" for image name, and "1.0" for image tag
-            - Invoke "Build image"
-            - Monitor the console output until "Successfully built the edge application image", and take note of the imagePrefix from the Image Details.
+- Use the VSCode tool to compile the SPL application code, and ultimately build into a Docker image.
+    1. Right click in the TradesAppCloud_withLogTrace application, and select "Build"
+        - Monitor the console output until the "Successfully build the application" message is displayed
+    1. Right click in the TradesAppCloud_withLogTrace application, and select "Build Edge Application Image"
+        - When prompted, select the base image that contains "streams-edge-base-application", and enter "tradesappcloud-withlogtrace" for image name, and "1.0" for image tag
+        - Invoke "Build image"
+        - Monitor the console output until "Successfully built the edge application image", and take note of the imagePrefix from the Image Details.
         
 #### 3. Select Edge Node(s) for development and deployment (via CP4D Console)
     To see list of Edge nodes that have been tethered to this CPD instance, do these steps:
