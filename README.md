@@ -162,25 +162,25 @@ While the high level flow is the same for both scenarios, the detailed steps hav
     
 #### 5. Deploy application package to an Edge node 
 From CP4D Console perform these steps. For more informations, see "Deploying using Cloud Pak for Data" topic. The values for the submission time variables can not be changed at this time.
-    1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
-    1. Go to row with "app control sample" > select three dots at end for row > Deploy to edge
-        1. Select check box for remote system to deploy to.
-        1. Select Deploy option.
-    1. Select "app control sample"
-        1. Look at Application instances
-            - verify that there is entry for a deployment
+1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
+1. Go to row with "app control sample" > select three dots at end for row > Deploy to edge
+    1. Select check box for remote system to deploy to.
+    1. Select Deploy option.
+1. Select "app control sample"
+    1. Look at Application instances
+        - verify that there is entry for a deployment
 
 #### 6. View the runtime logs
 From CP4D Console, perform these steps.  For more information, see ".... logs ...." topic.
-    1. Select CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
-    1. Select "app control sample'
-    1. Scroll down to Application instances.
-    1. Goto row for edge node that you would like to see log for, and select three dots at clear right part of row.
-        1. Select Download logs.
-    1. Unzip downloaded log package.
-    1. Open up app-control-sample-xxxx.log file
-        - This file contains a variety of statements.  The standard println output will be in this log, as well as the output from the trace statements.  Search for "USER-NAME" for example of println output. The trace statements will contain "#splapptrc".  
-        - Here is a snippet of the log. Notice that the input variables that were supplied made it to the application and were output to this log file. (e.g. MyFavoriteFootballTeams). Also, notice that the DEBUG-LEVEL message was not in the log.  This means the STREAMS_OPT_TRACE_LEVEL runtime-option that set the level to INFO made it to the application as well. 
+1. Select CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
+1. Select "app control sample'
+1. Scroll down to Application instances.
+1. Goto row for edge node that you would like to see log for, and select three dots at clear right part of row.
+    1. Select Download logs.
+1. Unzip downloaded log package.
+1. Open up app-control-sample-xxxx.log file
+    - This file contains a variety of statements.  The standard println output will be in this log, as well as the output from the trace statements.  Search for "USER-NAME" for example of println output. The trace statements will contain "#splapptrc".  
+    - Here is a snippet of the log. Notice that the input variables that were supplied made it to the application and were output to this log file. (e.g. MyFavoriteFootballTeams). Also, notice that the DEBUG-LEVEL message was not in the log.  This means the STREAMS_OPT_TRACE_LEVEL runtime-option that set the level to INFO made it to the application as well. 
 
 ```
 2020-08-19T10:07:10.064038778-07:00 stdout F 19 Aug 2020 17:07:10.063+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:82]  - mySubmissionTimeVariable_string =MyFavoriteFootballTeams
