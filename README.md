@@ -87,7 +87,7 @@ While the steps are the same for both scenarios, the detailed steps have some di
 
 ![non-EAM Deploy](./images/DeployAppPkg-withoutEAM.png)
 
-1. Develop application (via VS Code)
+#### 1. Develop application (via VS Code)
 
     The application used in this sample is a simple SPL application that reads stock ticker entries from a file, does a simple calculation on them, and then writes them out to a file. It will continue doing this in a loop.
 
@@ -128,7 +128,7 @@ While the steps are the same for both scenarios, the detailed steps have some di
 ```        
 Change the "yourName" string to something of your choosing.  This will allow you to see how it gets printed to the log. 
     
-1. Build application for the Edge (via VS Code)
+#### 2. Build application for the Edge (via VS Code)
     - Use the VSCode tool to compile the SPL application code, and ultimately build into a Docker image.
         1. Right click in the TradesAppCloud_withLogTrace application, and select "Build"
             - Monitor the console output until the "Successfully build the application" message is displayed
@@ -137,13 +137,13 @@ Change the "yourName" string to something of your choosing.  This will allow you
             - Invoke "Build image"
             - Monitor the console output until "Successfully built the edge application image", and take note of the imagePrefix from the Image Details.
         
-1. Select Edge Node(s) for development and deployment (via CP4D Console)
+#### 3. Select Edge Node(s) for development and deployment (via CP4D Console)
     To see list of Edge nodes that have been tethered to this CPD instance, do these steps:
     1. login in to CPD Console
     1. Select Navigation Menu > Analyze > Edge Analytics > Remote systems
         This will display a list of the available nodes. Select one of the _analytics-micro-edge-system_ type nodes.
 
-1. Develop / Publish application package 
+#### 4. Develop / Publish application package 
     
     - From CP4D Console, perform these steps. For more information, see "Packaging using Cloud Pak for Data" topic. 
         1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
@@ -162,7 +162,7 @@ Change the "yourName" string to something of your choosing.  This will allow you
             | STREAMS_OPT_TRACE_LEVEL | 3  | 
         1. Save
     
-1. Deploy application package to an Edge node 
+#### 5. Deploy application package to an Edge node 
     - From CP4D Console perform these steps. For more informations, see "Deploying using Cloud Pak for Data" topic. The values for the submission time variables can not be changed at this time.
         1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
         1. Go to row with "app control sample" > select three dots at end for row > Deploy to edge
@@ -172,7 +172,7 @@ Change the "yourName" string to something of your choosing.  This will allow you
             1. Look at Application instances
                 - verify that there is entry for a deployment
 
-1. View the runtime logs
+#### 6. View the runtime logs
     - From CP4D Console, perform these steps.  For more information, see ".... logs ...." topic.
         1. Select CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
         1. Select "app control sample'
@@ -197,7 +197,7 @@ Change the "yourName" string to something of your choosing.  This will allow you
 
 ```
               
-1. Undeploy application
+#### 7. Un-deploy application
     - From CP4D Console, perform these steps.  For more information, see "Deleting an application deployment" topic.
         1. Select CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
         1. Select "app control sample'
