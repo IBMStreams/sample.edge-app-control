@@ -2,6 +2,8 @@
 
 # sample.edge-app-control
 
+The application used in this sample is a simple SPL application that reads stock ticker entries from a file, does a simple calculation on them, and then writes them out to a file. It will continue doing this in a loop.
+
 The objective of this sample is to illustrate the steps involved with developing an Streams Programming Language (SPL) application for the Edge.  It will start with the application SPL source code, proceed to the application build process, followed by deployment (including configuration) to the edge nodes, and finish with examining the runtime output.  
 
 There are two ways of managing the edge application deployment lifecycles.
@@ -72,78 +74,71 @@ The SPL sample application has two submission time variables defined in it.  It 
 
 ## Steps 
 
-This sample will show how to develop and deploy an Edge application in an CPD environment without using an EAM instance, and how to develop and deploy an Edge application in an CPD environment when using an EAM instance.  The high level steps are the same for both of these scenarios.  
-1. Develop Application
-1. Build Application for the Edge
+This sample will show how to develop and deploy an Edge application in an CPD environment without using an EAM instance, and how to develop and deploy an Edge application in an CPD environment when using an EAM instance.  Here are the high level steps for developing and deploying the Edge application.   
+1. Develop and Build Application for the Edge
 1. Select Edge nodes to use
 1. Develop/Publish Application
 1. Deploy Application to Edge nodes
 1. View log
 1. Undeploy Application
 
-While the steps are the same for both scenarios, the detailed steps have some differences in them.  These detailed flows will be described separately.  
+While the high level flow is the same for both scenarios, the detailed steps have some differences in them and will be described separately in the following two scenarios.
 
 ### Scenario#1 - Develop and deploy application without IBM Edge Application Manager
 
 ![non-EAM Deploy](./images/DeployAppPkg-withoutEAM.png)
 
-#### 1. Develop application (via VS Code)
+#### 1. Develop and Build application for the Edge (via VS Code)
 
-The application used in this sample is a simple SPL application that reads stock ticker entries from a file, does a simple calculation on them, and then writes them out to a file. It will continue doing this in a loop.
+1. Work with application by opening up the VS Code editor on the TradesAppCloud_withLogTrace.spl SPL source code
 
-Some additional trace and println statements have been added to the application to show examples of how to define and reference submission time variables, and how to add application trace statements to output these values into the application log.
+    Some additional trace and println statements have been added to the application to show examples of how to define and reference submission time variables, and how to add application trace statements to output these values into the application log.
     
-Search for "LOOK HERE" to see the section of the application that is most relative to this sample.
+    Search for "LOOK HERE" to see the section of the application that is most relative to this sample.
     
-Notice the names for the two submission time variable names as they will be needed later on. 
-- _mySubmissionTimeVariable_string_
-- _mySubmissionTimeVariable_listOfStrings_
+    Notice the names for the two submission time variable names as they will be needed later on. 
+    - _mySubmissionTimeVariable_string_
+    - _mySubmissionTimeVariable_listOfStrings_
         
-```        
-{ 
-    // LOOK HERE
+        ```        
+    { 
+        // LOOK HERE
 
-    // define submission time variables; 1 of each supported type (string, list of strings)
-    rstring mySubmissionTimeVariable_string = getSubmissionTimeValue("mySubmissionTimeVariable_string","defaultValue");
-    list<rstring> mySubmissionTimeVariable_listOfStrings = getSubmissionTimeListValue("mySubmissionTimeVariable_listOfStrings","defaultFirstListElement", "defaultSecondListElement"]);
+        // define submission time variables; 1 of each supported type (string, list of strings)
+        rstring mySubmissionTimeVariable_string = getSubmissionTimeValue("mySubmissionTimeVariable_string","defaultValue");
+        list<rstring> mySubmissionTimeVariable_listOfStrings = getSubmissionTimeListValue("mySubmissionTimeVariable_listOfStrings","defaultFirstListElement", "defaultSecondListElement"]);
 						
-    // add trace statements that will display the submission time values that were inputted
-    appTrc(spl::Trace.info, "mySubmissionTimeVariable_string =" + mySubmissionTimeVariable_string);
-    appTrc(spl::Trace.info, "mySubmissionTimeVariable_listOfStrings var: ");
-    for (rstring parm in mySubmissionTimeVariable_listOfStrings) {
-        appTrc(spl::Trace.info, "   String element: "+parm);
-    }
+        // add trace statements that will display the submission time values that were inputted
+        appTrc(spl::Trace.info, "mySubmissionTimeVariable_string =" + mySubmissionTimeVariable_string);
+        appTrc(spl::Trace.info, "mySubmissionTimeVariable_listOfStrings var: ");
+        for (rstring parm in mySubmissionTimeVariable_listOfStrings) {
+            appTrc(spl::Trace.info, "   String element: "+parm);
+        }
                         
-    // notice the following trace statement is 'debug' level, 
-    //    & will only show in log when trace level is 'debug' or 'trace'
-    appTrc(spl::Trace.debug, "*** DEBUG-LEVEL of trace message ***");
+        // notice the following trace statement is 'debug' level, 
+        //    & will only show in log when trace level is 'debug' or 'trace'
+        appTrc(spl::Trace.debug, "*** DEBUG-LEVEL of trace message ***");
 
-    // add some print lines - modify "yourName" below if you would like to customize the output.
-    printStringLn("Average asking price for " + ticker + "  is " + (rstring) average);
-    printStringLn("This sample is being is being tried out by: USER-NAME= " + "yourName");
+        // add some print lines - modify "yourName" below if you would like to customize the output.
+        printStringLn("Average asking price for " + ticker + "  is " + (rstring) average);
+        printStringLn("This sample is being is being tried out by: USER-NAME= " + "yourName");
 
-    // submit the tuple
-    submit(AvgPrice, PrintAvPrice);						
-} 
-```        
-Change the "yourName" string to something of your choosing.  This will allow you to see how it gets printed to the log. 
+        // submit the tuple
+        submit(AvgPrice, PrintAvPrice);						
+    } 
+    ```        
+    Change the "yourName" string to something of your choosing.  This will allow you to see how it gets printed to the log. 
     
-#### 2. Build application for the Edge (via VS Code)
-Use the VSCode tool to compile the SPL application code, and ultimately build into a Docker image.
-1. Right click in the TradesAppCloud_withLogTrace application, and select "Build"
-    - Monitor the console output until the "Successfully build the application" message is displayed
-1. Right click in the TradesAppCloud_withLogTrace application, and select "Build Edge Application Image"
-    - When prompted, select the base image that contains "streams-edge-base-application", and enter "tradesappcloud-withlogtrace" for image name, and "1.0" for image tag
-    - Invoke "Build image"
-    - Monitor the console output until "Successfully built the edge application image", and take note of the imagePrefix from the Image Details.
+1. Build the application image for the Edge
+    1. Right click in the TradesAppCloud_withLogTrace application editing window, and select "Build"
+        - Monitor the console output until the "Successfully build the application" message is displayed
+    1. Right click in the TradesAppCloud_withLogTrace application editing window, and select "Build Edge Application Image"
+        - When prompted, select the base image that contains "streams-edge-base-application", and enter "tradesappcloud-withlogtrace" for image name, and "1.0" for image tag
+        - Click "Build image"
+        - Monitor the console output until "Successfully built the edge application image", and take note of the imagePrefix from the Image Details.
         
-#### 3. Select Edge Node(s) for development and deployment (via CP4D Console)
-To see list of Edge nodes that have been tethered to this CPD instance, do these steps:
-1. login in to CPD Console
-1. Select Navigation Menu > Analyze > Edge Analytics > Remote systems
-    This will display a list of the available nodes. Select one of the _analytics-micro-edge-system_ type nodes.
 
-#### 4. Develop / Publish application package 
+#### 2. Develop / Publish application package 
     
 - From CP4D Console, perform these steps. For more information, see "Packaging using Cloud Pak for Data" topic. 
     1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
@@ -222,7 +217,7 @@ To see list of Edge nodes that have been tethered to this CPD instance, do these
     This will display a list of the available nodes.  Select one of the _ieam-analytics-micro-edge-system_ type nodes for the development system.  Also, select one of these for the deployment system.  It can be the same system.
 
 #### 4. Develop / Publish application package 
-- ssh to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application discovered in step #1 above will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
+ssh to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application discovered in step #1 above will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
     1. Install the OpenShift® command-line interface. See xxxx.
     1. Setup the environment variables
         - eval export $(cat agent-install.cfg)
@@ -286,7 +281,7 @@ To see list of Edge nodes that have been tethered to this CPD instance, do these
             
 
 #### 5. Deploy application package to an Edge node 
-- ssh to CP4D Edge node chosen for deployment and perform the following steps.  For more information, see the "Deploying using Edge Application Manager" topic.  The values for the submission time variables from the application will be specified during deployment.
+ssh to CP4D Edge node chosen for deployment and perform the following steps.  For more information, see the "Deploying using Edge Application Manager" topic.  The values for the submission time variables from the application will be specified during deployment.
     1. vi userinput.json and add the following json to it.
         
         ```
@@ -306,7 +301,6 @@ To see list of Edge nodes that have been tethered to this CPD instance, do these
         ```
 
 #### 6. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
-- same as Scenario#1
 
 
 The system log file contains several messages from many different sources.  To filter off what you are interested requires using grep'g techniques.
@@ -322,7 +316,9 @@ The system log file contains several messages from many different sources.  To f
 
 ## Additional Resources
 
-When the same name is used for a submission time variable in different parts of the application, the variable names must be prepended by the application namespace and composite operator name.  To determine what this fully qualified name looks like, you may retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic. 
+***Submission Time Variable Name Collisions:*** 
+
+When the same name is used for a submission time variable in different namespaces or composites of the application, the variable names must be prepended by the application namespace and composite operator name.  To determine what this fully qualified name looks like, you may retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic. 
 
 This is also useful to discover the supported variables for an image that the source code is not readily available for.
 
