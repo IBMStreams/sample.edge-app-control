@@ -87,10 +87,8 @@ While the steps are the same for both scenarios, the detailed steps have some di
 						// LOOK HERE
 
 						// define submission time variables; 1 of each supported type (string, list of strings)
-                    	rstring mySubmissionTimeVariable_string 
-							= getSubmissionTimeValue("mySubmissionTimeVariable_string","defaultValue");
-                    	list<rstring> mySubmissionTimeVariable_listOfStrings 
-							= getSubmissionTimeListValue("mySubmissionTimeVariable_listOfStrings",["defaultFirstListElement", "defaultSecondListElement"]);
+                    	rstring mySubmissionTimeVariable_string = getSubmissionTimeValue("mySubmissionTimeVariable_string","defaultValue");
+                    	list<rstring> mySubmissionTimeVariable_listOfStrings = getSubmissionTimeListValue("mySubmissionTimeVariable_listOfStrings","defaultFirstListElement", "defaultSecondListElement"]);
 						
 						// add trace statements that will display the submission time values that were inputted
 						appTrc(spl::Trace.info, "mySubmissionTimeVariable_string =" + mySubmissionTimeVariable_string);
@@ -98,6 +96,7 @@ While the steps are the same for both scenarios, the detailed steps have some di
 						for (rstring parm in mySubmissionTimeVariable_listOfStrings) {
 							appTrc(spl::Trace.info, "   String element: "+parm);
 						}
+                        
 						// notice the following trace statement is 'debug' level, 
 						//    & will only show in log when trace level is 'debug' or 'trace'
 						appTrc(spl::Trace.debug, "*** debug level of trace message *** ");
@@ -109,7 +108,6 @@ While the steps are the same for both scenarios, the detailed steps have some di
 						// submit the tuple
 						submit(AvgPrice, PrintAvPrice);						
 					} 
-        
 ```        
     
     ![App Snippet](./images/App_snippet.png)
