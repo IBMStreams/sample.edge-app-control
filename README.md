@@ -126,9 +126,7 @@ While the steps are the same for both scenarios, the detailed steps have some di
     submit(AvgPrice, PrintAvPrice);						
 } 
 ```        
-
-    
-To further demonstrate the println function working, you may customize the "yourName" string in the application to see how it gets printed to the output log.
+Change the "yourName" string to something of your choosing.  This will allow you to see how it gets printed to the log. 
     
 1. Build application for the Edge (via VS Code)
     - Use the VSCode tool to compile the SPL application code, and ultimately build into a Docker image.
@@ -323,10 +321,19 @@ The system log file contains several messages from many different sources.  To f
 
 ## Additional Resources
 
-Note: if there is a naming conflict with submission time variables with different parts of the your application, or if you do not have access to the application source code, you will need to retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic.  For illustration, the information retrieved by performing this process for this sample application are shown in these files in this repo:
+When the same name is used for a submission time variable in different parts of the application, the variable names must be prepended by the application namespace and composite operator name.  To determine what this fully qualified name looks like, you may retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic. 
+
+This is also useful to discover the supported variables for an image that the source code is not readily available for.
+
+For illustration purposes, the information retrieved by performing this process for this sample application are shown in these files in this repo:
     
     - sample.edge-app-control/config-files/app-definition.json
     - sample.edge-app-control/config-files/runtime-options.json
+
+
+
+
+
 
 * Outline major steps to complete the task, e.g. They must use the X operator with parameters a,b, and c. State that early and repeat it a couple of times. 
 * Discuss details about each step
