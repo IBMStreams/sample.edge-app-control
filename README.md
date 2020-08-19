@@ -166,7 +166,7 @@ To further demonstrate, you may customize the "yourName" string in the applicati
             1. Select Download logs.
         1. Unzip downloaded log package.
         1. Open up app-control-sample-xxxx.log file
-            - This file contains a variety of statements.  The standard println output will be in this log, as well as the output from the trace statements.  Search for "USER-NAME" for example line. The trace statements will have "#splapptrc".  
+            - This file contains a variety of statements.  The standard println output will be in this log, as well as the output from the trace statements.  Search for "USER-NAME" for example of println output. The trace statements will contain "#splapptrc".  
             - Here is a snippet of the log. Notice that the input variables that were supplied made it to the application and were output to this log file. (e.g. MyFavoriteFootballTeams). Also, notice that the DEBUG-LEVEL message was not in the log.  This means the STREAMS_OPT_TRACE_LEVEL runtime-option that set the level to INFO made it to the application as well. 
 
 ```
@@ -181,17 +181,14 @@ To further demonstrate, you may customize the "yourName" string in the applicati
 
 
 ```
-
-The system log file contains several messages from many different sources.  To filter off what you are interested requires using grep'g techniques.
-- See all messages for service
-    - cat /var/log/syslog | grep image-name
-- See all trace messages for service - trace statements
-    - cat /var/log/syslog | grep image-name | grep apptrc
-        Notice the xxx statements produced from the application trace statements.
-        Notice also that they contain the variable values that we inputted.
-                    
+              
 1. Undeploy application
-
+    - From CP4D Console, perform these steps.  For more information, see "Deleting an application deployment" topic.
+        1. Select CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
+        1. Select "app control sample'
+        1. Scroll down to Application instances.
+        1. Goto row for edge node that you would like to delete, and select three dots at clear right part of row.
+            1. Select Delete
 
 ### Scenario#2 - Develop and deploy application with IBM Edge Application Manager
 
@@ -296,6 +293,15 @@ The system log file contains several messages from many different sources.  To f
 1. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
     - same as Scenario#1
 
+The system log file contains several messages from many different sources.  To filter off what you are interested requires using grep'g techniques.
+- See all messages for service
+    - cat /var/log/syslog | grep image-name
+- See all trace messages for service - trace statements
+    - cat /var/log/syslog | grep image-name | grep apptrc
+        Notice the xxx statements produced from the application trace statements.
+        Notice also that they contain the variable values that we inputted.
+        
+1. Undeploy application
 
 * Outline major steps to complete the task, e.g. They must use the X operator with parameters a,b, and c. State that early and repeat it a couple of times. 
 * Discuss details about each step
