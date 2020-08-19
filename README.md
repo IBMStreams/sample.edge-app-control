@@ -27,25 +27,31 @@ The SPL sample application has two submission time variables defined in it.  It 
 ## Prerequisite steps that are needed prior to trying this sample 
   
 1. [Install IBM Cloud Pak for Data (CPD) 3.0.1](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/install/install.html)
-2. [Install IBM Edge Analytics beta service on CPD](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/install.html) and [setup edge systems](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/admin.html)
-3. [Install IBM Streams 5.4.0 service on CPD](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/svc/streams/install-intro.html)
-5. [Provision a Streams instance](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/svc/streams/provision.html#provision)
-* You will need to gather the following information prior to starting this sample exercise:
-    - IBM Cloud Pak for Data information
+    - Gather the following information
         - **_web client URL_**: This is the URL used to access the IBM Cloud Pak for Data environment in your browser. It should be of the form: https://HOST:PORT (e.g., https://123.45.67.89:12345).
         - **_credentials_**
         : These are the credentials (username and password) used to log in to the IBM Cloud Pak for Data environment in your browser. 
         - **_version_**: You can find the version number in the About section after logging in to the IBM Cloud Pak for Data environment in your browser.
-        
-    - Credentials (root password) for Edge nodes
+
+2. [Install IBM Edge Analytics beta service on CPD](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/install.html) and [setup edge systems](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/admin.html)
+    - Gather the following information
+        - Credentials (root password) for Edge nodes
     
-    - If using EAM
-        - API key for EAM access  
-            - _eam-api-key_
-        - open shift cluster url & credentials 
-            - _openshift-cluster-url:port_
-            - _default-route-to-openshift-image-registry_
-            - _openshift-token-for-cpd-admin-sa_
+3. [Install IBM Streams 5.4.0 service on CPD](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/svc/streams/install-intro.html)
+
+4. [Provision a Streams instance](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/svc/streams/provision.html#provision)
+
+5. If IEAM will be used to managed edge application lifecycles
+    - [Install IBM Edge Application Manager 4.1](https://www.ibm.com/support/knowledgecenter/SSFKVV_4.1/hub/hub.html)
+    
+        - Gather the following information
+            - API key for IEAM access  
+                - _eam-api-key_
+            - Openshift cluster url & credentials 
+                - _openshift-cluster-url:port_
+                - _default-route-to-openshift-image-registry_
+                - _openshift-token-for-cpd-admin-sa_
+
             
 * Clone this repository or download the source archive. 
    
