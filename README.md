@@ -13,8 +13,6 @@ This article will use an SPL sample application that has some submission time va
 ## Skill Level 
 
 * The sample program is written in SPL, so an elementary understanding of SPL might help understanding the sample better.  See SPL reference below.
-* Expected skills level - what does the reader need to know to understand this article?
-* If the user does not have the required skills, where should they go to learn more? 
 
 ## Prerequisite information needed and steps to perform 
 
@@ -24,6 +22,7 @@ This article will use an SPL sample application that has some submission time va
         - **_credentials_**
         : These are the credentials (username and password) used to log in to the IBM Cloud Pak for Data environment in your browser. 
         - **_version_**: You can find the version number in the About section after logging in to the IBM Cloud Pak for Data environment in your browser.
+        
     - credentials (root password) for Edge nodes
     
     - If using EAM
@@ -37,7 +36,7 @@ This article will use an SPL sample application that has some submission time va
 * Clone this repository or download the source archive. 
    
    
-* The VSCode tool needs to setup for use. 
+* The VSCode tool needs to be setup for use. 
     1. Install and setup VS Code. See the "Installation and setup" section of this reference: 
 <http://ibmstreams.github.io/streamsx.documentation/docs/spl/quick-start/qs-1b/>
     1. Follow instructions in the "Add a Streams instance" section
@@ -52,7 +51,7 @@ This article will use an SPL sample application that has some submission time va
 
 ## Steps 
 
-This sample will show how to develop and deploy an Edge application with and without using the IBM Edge Application Manager.  The high level steps are the same for both of these scenarios.  
+This sample will show how to develop and deploy an Edge application in an CPD environment without using an EAM intance, and how to develop and deploy an Edge application in an CPD environment when using an EAM instance.  The high level steps are the same for both of these scenarios.  
 1. Develop Application
 1. Build Application for the Edge
 1. Select Edge nodes to use
