@@ -157,17 +157,17 @@ To further demonstrate, you may customize the "yourName" string in the applicati
             1. Look at Application instances
                 - verify that there is entry for a deployment
 
-1. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
+1. View the runtime logs
     - From CP4D Console, perform these steps.  For more information, see ".... logs ...." topic.
         1. Select CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
         1. Select "app control sample'
         1. Scroll down to Application instances.
         1. Goto row for edge node that you would like to see log for, and select three dots at clear right part of row.
             1. Select Download logs.
-        1. Unzip log package.
+        1. Unzip downloaded log package.
         1. Open up app-control-sample-xxxx.log file
-            - note:
-                - trace statements will have "#splapptrc".  Notice that the input variables that were supplied made it to the application (e.g. MyFavoriteFootballTeams), and that the DEBUG-LEVEL message was not in the log.  This means the  STREAMS_OPT_TRACE_LEVEL level runtime-option made it to the application as well.  The println statement outputs are also collected in this log.  Search for "USER-NAME".
+            - This file contains a variety of statements.  The standard println output will be in this log, as well as the output from the trace statements.  Search for "USER-NAME" for example line. The trace statements will have "#splapptrc".  
+            - Here is a snippet of the log. Notice that the input variables that were supplied made it to the application and were output to this log file. (e.g. MyFavoriteFootballTeams). Also, notice that the DEBUG-LEVEL message was not in the log.  This means the STREAMS_OPT_TRACE_LEVEL runtime-option that set the level to INFO made it to the application as well. 
 
 ```
 2020-08-19T10:07:10.064038778-07:00 stdout F 19 Aug 2020 17:07:10.063+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:82]  - mySubmissionTimeVariable_string =MyFavoriteFootballTeams
