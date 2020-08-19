@@ -1,40 +1,6 @@
 # sample.edge-app-control
 Application control sample
 
-#Brad's new sample documention.
-When writing a guide or article about how to perform a specific task, here are some tips to speed up writing time and improve the quality of the finished article.
-
-# Preparing to write
-
-Some questions to help you identify the key information to highlight:
-* What pain points does this task address? Who would be interested in learning this information?
-
-* If I was a developer trying to find this article, what keywords would I be using to search for it? 
-   * Are those keywords highlighted early in the article?
-* Is there a real-world problem or user story around which you can frame the article?
-
-* What are the key points they need to know? E.g. They must use the X operator with parameters a,b, and c. 
-
-# Before you Start Writing
-If the article has a long list of instructions, put together a table of contents first to organize the flow of the instructions.
-
-Examples:
-* https://developer.ibm.com/streamsdev/docs/streams-quick-start-guide/
-* https://developer.ibm.com/streamsdev/2018/01/12/calculate-moving-averages-real-time-data-streams-designer/
-* https://developer.ibm.com/streamsdev/docs/common-patterns-tracking-moving-objects-streams-part-2-geofencing/
-
-You can create links to sections in the doc using the anchor tag, e.g:
-
-```
-- [step 1](#step1)
-- [step 2](#step2)
-...
-<a id="step1">
-<h2>Step 1</h2>
-```
-
-The section below outlines things that you should cover, but your outline and table of contents are important to flush out first.
-
 # Sample outline
 
 ## Introduction
@@ -265,6 +231,7 @@ While the steps are the same for both scenarios, the detailed steps has some dif
         ```
 
 1. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
+    - same as Scenario#1
 
 
 * Outline major steps to complete the task, e.g. They must use the X operator with parameters a,b, and c. State that early and repeat it a couple of times. 
@@ -281,5 +248,37 @@ Avoid discussing information that is interesting/cool but that a user, especiall
 
 
 * SPL reference
+
+
+# Preparing to write
+
+Some questions to help you identify the key information to highlight:
+* What pain points does this task address? Who would be interested in learning this information?
+
+* If I was a developer trying to find this article, what keywords would I be using to search for it? 
+   * Are those keywords highlighted early in the article?
+* Is there a real-world problem or user story around which you can frame the article?
+
+* What are the key points they need to know? E.g. They must use the X operator with parameters a,b, and c. 
+
+# Before you Start Writing
+If the article has a long list of instructions, put together a table of contents first to organize the flow of the instructions.
+
+Examples:
+* https://developer.ibm.com/streamsdev/docs/streams-quick-start-guide/
+* https://developer.ibm.com/streamsdev/2018/01/12/calculate-moving-averages-real-time-data-streams-designer/
+* https://developer.ibm.com/streamsdev/docs/common-patterns-tracking-moving-objects-streams-part-2-geofencing/
+
+You can create links to sections in the doc using the anchor tag, e.g:
+
+```
+- [step 1](#step1)
+- [step 2](#step2)
+...
+<a id="step1">
+<h2>Step 1</h2>
+```
+
+The section below outlines things that you should cover, but your outline and table of contents are important to flush out first.
 
 
