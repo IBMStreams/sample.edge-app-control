@@ -105,11 +105,10 @@ While the steps are the same for both scenarios, the detailed steps have some di
 } 
 ```        
 
-
-    Note: if there is a naming conflict with submission time variables with different parts of the your application, or if you do not have access to the application source code, you will need to retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic.  The information retrieved by performing this process for this sample application are shown in the files in this repo:
+Note: if there is a naming conflict with submission time variables with different parts of the your application, or if you do not have access to the application source code, you will need to retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic.  The information retrieved by performing this process for this sample application are shown in the files in this repo:
     
-        - config-files/app-definition.json
-        - config-files/runtime-options.json
+    - config-files/app-definition.json
+    - config-files/runtime-options.json
     
     To further demonstrate, you may customize the "yourName" string in the application to see how it gets printed to the output log.
     
