@@ -151,7 +151,7 @@ While the high level flow is the same for both scenarios, the detailed steps hav
         | Name | app control sample | 
         | Version | 1.0 |
         | Image reference | trades-withtrace:1.0 | 
-    1. Scroll down to Additional attributes > Environment variables and add the following variables.  Clicking 'Add more" as needed.
+    1. Scroll down to Additional attributes > Environment variables and add the following variables.  Clicking 'Add more" as needed.  See more information on [determining what variables are supported.](#stv)
         
         | Variable Name | Value |
         | ------------- | ----- |
@@ -319,6 +319,7 @@ The system log file contains several messages from many different sources.  To f
 
 ## Additional Resources
 
+<a id="stv">
 ***Submission Time Variable Name Collisions:*** 
 
 When the same name is used for a submission time variable in different namespaces or composites of the application, the variable names must be prepended by the application namespace and composite operator name.  To determine what this fully qualified name looks like, you may retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic. 
