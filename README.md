@@ -47,6 +47,7 @@ The SPL sample application has two submission time variables defined in it.  It 
         - Gather the following information
             - API key for IEAM access  
                 - _eam-api-key_
+    - Reference Openshift administrator
             - Openshift cluster url & credentials 
                 - _openshift-cluster-url:port_
                 - _default-route-to-openshift-image-registry_
