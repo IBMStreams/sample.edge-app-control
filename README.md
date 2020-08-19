@@ -101,7 +101,7 @@ While the high level flow is the same for both scenarios, the detailed steps hav
     - _mySubmissionTimeVariable_listOfStrings_
            
     Change the "yourName" string to something of your choosing.  This will allow you to see how it gets printed to the log. 
-    
+    Save the application file.
         
     ```        
     { 
@@ -145,13 +145,13 @@ While the high level flow is the same for both scenarios, the detailed steps hav
     
 - From CP4D Console, perform these steps. For more information, see "Packaging using Cloud Pak for Data" topic. 
     1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
-    1. Add Application packages
+    1. Click 'Add Application packages' and fill in these values
         | Field | Value |
         | ----- | ----- |
         | Name | app control sample | 
         | Version | 1.0 |
         | Image reference | trades-withtrace:1.0 | 
-    1. Scroll down to Additional attributes > Environment variables
+    1. Scroll down to Additional attributes > Environment variables and add the following variables.  Clicking 'Add more" as needed.
         
         | Variable Name | Value |
         | ------------- | ----- |
