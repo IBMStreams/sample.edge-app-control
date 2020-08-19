@@ -83,31 +83,31 @@ While the steps are the same for both scenarios, the detailed steps have some di
         - config-files/runtime-options.json
         
 ```        
-					{ 
-						// LOOK HERE
+{ 
+    // LOOK HERE
 
-						// define submission time variables; 1 of each supported type (string, list of strings)
-                    	rstring mySubmissionTimeVariable_string = getSubmissionTimeValue("mySubmissionTimeVariable_string","defaultValue");
-                    	list<rstring> mySubmissionTimeVariable_listOfStrings = getSubmissionTimeListValue("mySubmissionTimeVariable_listOfStrings","defaultFirstListElement", "defaultSecondListElement"]);
+    // define submission time variables; 1 of each supported type (string, list of strings)
+    rstring mySubmissionTimeVariable_string = getSubmissionTimeValue("mySubmissionTimeVariable_string","defaultValue");
+    list<rstring> mySubmissionTimeVariable_listOfStrings = getSubmissionTimeListValue("mySubmissionTimeVariable_listOfStrings","defaultFirstListElement", "defaultSecondListElement"]);
 						
-						// add trace statements that will display the submission time values that were inputted
-						appTrc(spl::Trace.info, "mySubmissionTimeVariable_string =" + mySubmissionTimeVariable_string);
-						appTrc(spl::Trace.info, "mySubmissionTimeVariable_listOfStrings var: ");
-						for (rstring parm in mySubmissionTimeVariable_listOfStrings) {
-							appTrc(spl::Trace.info, "   String element: "+parm);
-						}
+    // add trace statements that will display the submission time values that were inputted
+    appTrc(spl::Trace.info, "mySubmissionTimeVariable_string =" + mySubmissionTimeVariable_string);
+    appTrc(spl::Trace.info, "mySubmissionTimeVariable_listOfStrings var: ");
+    for (rstring parm in mySubmissionTimeVariable_listOfStrings) {
+        appTrc(spl::Trace.info, "   String element: "+parm);
+    }
                         
-						// notice the following trace statement is 'debug' level, 
-						//    & will only show in log when trace level is 'debug' or 'trace'
-						appTrc(spl::Trace.debug, "*** debug level of trace message *** ");
+    // notice the following trace statement is 'debug' level, 
+    //    & will only show in log when trace level is 'debug' or 'trace'
+    appTrc(spl::Trace.debug, "*** debug level of trace message *** ");
 
-						// add some print lines - modify "yourName" below if you would like to customize the output.
-						printStringLn("Average asking price for " + ticker + "  is " + (rstring) average);
-						printStringLn("This sample is being is being tried out by: " + "yourName");
+    // add some print lines - modify "yourName" below if you would like to customize the output.
+    printStringLn("Average asking price for " + ticker + "  is " + (rstring) average);
+    printStringLn("This sample is being is being tried out by: " + "yourName");
 
-						// submit the tuple
-						submit(AvgPrice, PrintAvPrice);						
-					} 
+    // submit the tuple
+    submit(AvgPrice, PrintAvPrice);						
+} 
 ```        
     
     ![App Snippet](./images/App_snippet.png)
