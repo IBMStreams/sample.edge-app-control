@@ -1,0 +1,39 @@
+{
+    "org": "$HZN_ORG_ID",
+    "label": "$SERVICE_NAME for $ARCH",
+    "description": "",
+    "public": true,
+    "documentation": "",
+    "url": "$SERVICE_NAME",
+    "version": "$SERVICE_VERSION",
+    "arch": "$ARCH",
+    "sharable": "multiple",
+    "requiredServices": [],
+    "userInput": [
+          {
+             "name": "mySubmissionTimeVariable_string",
+             "type": "string",
+             "defaultValue": "defaultValue"
+          },
+          {
+             "name": "mySubmissionTimeVariable_listOfStrings",
+             "type": "list of strings",
+             "defaultValue": "defaultFirstListElement,defaultSecondListElement"
+          },
+            {
+                "name": "STREAMS_OPT_TRACE_LEVEL",
+                "label" : "Tracing level: 0=OFF, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG, 5=TRACE",
+                "type": "string",
+                "defaultValue": "1"
+            }
+    ],
+    "deployment": {
+        "services": {
+            "tradesappcloud-withlogtrace": {
+            "image": "$OCP_DOCKER_HOST/$IMAGE_PREFIX/tradesappcloud-withlogtrace:1.0",
+            "privileged": false,
+            "network": ""
+            }
+        }
+    }
+}

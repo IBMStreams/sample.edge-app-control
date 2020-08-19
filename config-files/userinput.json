@@ -1,0 +1,13 @@
+{
+    "services": [
+            {
+                "org": "$HZN_ORG_ID",
+                "url": "sample-trace",
+                "variables": {
+                    "mySubmissionTimeVariable_string": "MyFavoriteFootballTeams",
+                    "mySubmissionTimeVariable_listOfStrings": ["Vikings,Packers,Lions,Bears"],
+                    "STREAMS_OPT_TRACE_LEVEL" : "3"
+                }
+            }
+    ]
+} 

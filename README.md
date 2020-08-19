@@ -27,10 +27,10 @@ This article will use an SPL sample application that has some submission time va
 
 * You will need the following information prior to starting this sample exercise:   
     - IBM Cloud Pak for Data information
-        - **_version_**: You can find the version number in the About section after logging in to the IBM Cloud Pak for Data environment in your browser.
         - **_web client URL_**: This is the URL used to access the IBM Cloud Pak for Data environment in your browser. It should be of the form: https://HOST:PORT (e.g., https://123.45.67.89:12345).
         - **_credentials_**
         : These are the credentials (username and password) used to log in to the IBM Cloud Pak for Data environment in your browser. 
+        - **_version_**: You can find the version number in the About section after logging in to the IBM Cloud Pak for Data environment in your browser.
     - credentials (username and password) for Edge nodes
     - EAM Scenario only
         - API key for EAM access
@@ -39,7 +39,7 @@ This article will use an SPL sample application that has some submission time va
 
 ## Steps 
 
-This sample will show how to develop and deploy the application with and without EAM.  The high level steps are the same for both of these cases.  The individual steps will point out when there is difference between these two scenarios.
+This sample will show how to develop and deploy the application with and without IBM Edge Application Manager.  The high level steps are the same for both of these cases.  
 1. Develop Application
 1. Build Application for the Edge
 1. Select Edge nodes to use
@@ -126,8 +126,6 @@ While the steps are the same for both scenarios, the detailed steps has some dif
                 - cat /var/log/syslog | grep image-name | grep apptrc
                     Notice the xxx statements produced from the application trace statements.
                     Notice also that they contain the variable values that we inputted.
-
-
 
 
 ### Scenario#2 - Develop and deploy application with IBM Edge Application Manager
@@ -222,7 +220,7 @@ While the steps are the same for both scenarios, the detailed steps has some dif
                             "url": "sample-trace",
                             "variables": {
                                 "mySubmissionTimeVariable_string": "MyFavoriteFootballTeams",
-                                "stv_strings": ["Vikings,Packers,Lions,Bears"],
+                                "mySubmissionTimeVariable_listOfStrings": ["Vikings,Packers,Lions,Bears"],
                                 "STREAMS_OPT_TRACE_LEVEL" : "3"
                             }
                         }
