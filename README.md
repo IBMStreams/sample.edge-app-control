@@ -2,11 +2,19 @@
 
 # sample.edge-app-control
 
-The objective of this sample is to illustrate the steps involved with developing an Streams Programming Language (SPL) application for the Edge.  It will start with the application SPL source code, proceed to the application build process, followed by deployment (including configuration) to the edge nodes, and finish with examining the runtime output.
+The objective of this sample is to illustrate the steps involved with developing an Streams Programming Language (SPL) application for the Edge.  It will start with the application SPL source code, proceed to the application build process, followed by deployment (including configuration) to the edge nodes, and finish with examining the runtime output.  
+
+There are two ways of managing the edge application deployment lifecycles.
+
+1. Using built-in edge deployment support in Cloud Pak for Data (CP4D)
+1. Using an instance of the IBM Edge Application Manager (IEAM)
+    
+This sample will demonstrate both of these scenarios.
 
 The sample will also show how the runtime behavior of a Streams Edge application can be configured at deployment time via the following two mechanisms.
 
 - **_submission time variables_**.  These are optional, application specific variables that are defined in the application. The application code determines how the values passed in for these variables at deployment time affects the behavior of the application at runtime.
+
 
 - **_runtime options_**.  These control more basic built-in capabilities and therefore available for every application.  The set of supported built-in options are described in [runtime-options](#runtime-options).
 
@@ -14,12 +22,15 @@ The SPL sample application has two submission time variables defined in it.  It 
 
 ## Skill Level 
 
-* The sample program is written in SPL, so an elementary understanding of SPL might help understanding the sample better.  See SPL reference below.  
-[SPL Reference] (https://www.ibm.com/support/knowledgecenter/SSCRJU_5.3/com.ibm.streams.splangref.doc/doc/spl-container.html)
+* The sample program is written in SPL, so an elementary understanding of SPL might help understanding the sample better.  See  [SPL Reference.](https://www.ibm.com/support/knowledgecenter/SSCRJU_5.3/com.ibm.streams.splangref.doc/doc/spl-container.html)
 
 ## Prerequisite steps that are needed prior to trying this sample 
-
-* You will need to gather the following information prior to starting this sample exercise:   
+  
+1. [Install IBM Cloud Pak for Data (CPD) 3.0.1](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/install/install.html)
+2. [Install IBM Edge Analytics beta service on CPD](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/install.html) and [setup edge systems](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/admin.html)
+3. [Install IBM Streams 5.4.0 service on CPD](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/svc/streams/install-intro.html)
+5. [Provision a Streams instance](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/svc/streams/provision.html#provision)
+* You will need to gather the following information prior to starting this sample exercise:
     - IBM Cloud Pak for Data information
         - **_web client URL_**: This is the URL used to access the IBM Cloud Pak for Data environment in your browser. It should be of the form: https://HOST:PORT (e.g., https://123.45.67.89:12345).
         - **_credentials_**
@@ -39,7 +50,7 @@ The SPL sample application has two submission time variables defined in it.  It 
 * Clone this repository or download the source archive. 
    
    
-* Install and setup the VSCode tool. 
+* Install and setup the Visual Studio Code (VSCode) tool. 
     1. Install and setup VS Code. See the "Installation and setup" section of this reference: 
 <http://ibmstreams.github.io/streamsx.documentation/docs/spl/quick-start/qs-1b/>
     1. Follow instructions in the "Add a Streams instance: IBM Cloud Pak for Data deployment" section
@@ -54,7 +65,7 @@ The SPL sample application has two submission time variables defined in it.  It 
 
 ## Steps 
 
-This sample will show how to develop and deploy an Edge application in an CPD environment without using an EAM intance, and how to develop and deploy an Edge application in an CPD environment when using an EAM instance.  The high level steps are the same for both of these scenarios.  
+This sample will show how to develop and deploy an Edge application in an CPD environment without using an EAM instance, and how to develop and deploy an Edge application in an CPD environment when using an EAM instance.  The high level steps are the same for both of these scenarios.  
 1. Develop Application
 1. Build Application for the Edge
 1. Select Edge nodes to use
@@ -109,10 +120,6 @@ While the steps are the same for both scenarios, the detailed steps have some di
 } 
 ```        
 
-Note: if there is a naming conflict with submission time variables with different parts of the your application, or if you do not have access to the application source code, you will need to retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic.  The information retrieved by performing this process for this sample application are shown in the files in this repo:
-    
-    - config-files/app-definition.json
-    - config-files/runtime-options.json
     
 To further demonstrate the println function working, you may customize the "yourName" string in the application to see how it gets printed to the output log.
     
@@ -306,21 +313,20 @@ The system log file contains several messages from many different sources.  To f
         
 1. Undeploy application
 
+
+## Additional Resources
+
+Note: if there is a naming conflict with submission time variables with different parts of the your application, or if you do not have access to the application source code, you will need to retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic.  For illustration, the information retrieved by performing this process for this sample application are shown in these files in this repo:
+    
+    - sample.edge-app-control/config-files/app-definition.json
+    - sample.edge-app-control/config-files/runtime-options.json
+
 * Outline major steps to complete the task, e.g. They must use the X operator with parameters a,b, and c. State that early and repeat it a couple of times. 
 * Discuss details about each step
    * Keep the steps to the point and concise.
    * Make sure there is validation at the end of each step ... so the user knows that they have completed the steps successfully.  i.e. what should the user see at the end of each major step?
 
 Avoid discussing information that is interesting/cool but that a user, especially a novice, does not need to know to complete the task.
-
-## Additional Resources / What's Next?
-
-* List of resources to help the user learn more about the task?
-* What can they do next?
-
-
-* SPL reference
-
 
 # Preparing to write
 
