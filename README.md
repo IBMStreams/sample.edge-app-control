@@ -2,7 +2,7 @@
 
 # sample.edge-app-control
 
-The objective of this sample is to illustrate the steps involved with developing an SPL application for the Edge.  It will start with the application SPL source code, proceed to the application build process, followed by deployment (including configuration) to the edge nodes, and finish with examining the runtime output.
+The objective of this sample is to illustrate the steps involved with developing an Streams Programming Language (SPL) application for the Edge.  It will start with the application SPL source code, proceed to the application build process, followed by deployment (including configuration) to the edge nodes, and finish with examining the runtime output.
 
 The sample will also show how the runtime behavior of a Streams Edge application can be configured at deployment time via the following two mechanisms.
 
@@ -14,7 +14,8 @@ The SPL sample application has two submission time variables defined in it.  It 
 
 ## Skill Level 
 
-* The sample program is written in SPL, so an elementary understanding of SPL might help understanding the sample better.  See SPL reference below.
+* The sample program is written in SPL, so an elementary understanding of SPL might help understanding the sample better.  See SPL reference below.  
+[SPL Reference] (https://www.ibm.com/support/knowledgecenter/SSCRJU_5.3/com.ibm.streams.splangref.doc/doc/spl-container.html)
 
 ## Prerequisite steps that are needed prior to trying this sample 
 
@@ -113,7 +114,7 @@ Note: if there is a naming conflict with submission time variables with differen
     - config-files/app-definition.json
     - config-files/runtime-options.json
     
-To further demonstrate, you may customize the "yourName" string in the application to see how it gets printed to the output log.
+To further demonstrate the println function working, you may customize the "yourName" string in the application to see how it gets printed to the output log.
     
 1. Build application for the Edge (via VS Code)
     - Use the VSCode tool to compile the SPL application code, and ultimately build into a Docker image.
