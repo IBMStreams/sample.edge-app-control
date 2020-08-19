@@ -14,16 +14,16 @@ This article will use an SPL sample application that has some submission time va
 
 * The sample program is written in SPL, so an elementary understanding of SPL might help understanding the sample better.  See SPL reference below.
 
-## Prerequisite information needed and steps to perform 
+## Prerequisite steps to perform 
 
-* You will need the following information prior to starting this sample exercise:   
+* You will need to gather the following information prior to starting this sample exercise:   
     - IBM Cloud Pak for Data information
         - **_web client URL_**: This is the URL used to access the IBM Cloud Pak for Data environment in your browser. It should be of the form: https://HOST:PORT (e.g., https://123.45.67.89:12345).
         - **_credentials_**
         : These are the credentials (username and password) used to log in to the IBM Cloud Pak for Data environment in your browser. 
         - **_version_**: You can find the version number in the About section after logging in to the IBM Cloud Pak for Data environment in your browser.
         
-    - credentials (root password) for Edge nodes
+    - C:redentials (root password) for Edge nodes
     
     - If using EAM
         - API key for EAM access  
@@ -36,10 +36,10 @@ This article will use an SPL sample application that has some submission time va
 * Clone this repository or download the source archive. 
    
    
-* The VSCode tool needs to be setup for use. 
+* Install and setup the VSCode tool. 
     1. Install and setup VS Code. See the "Installation and setup" section of this reference: 
 <http://ibmstreams.github.io/streamsx.documentation/docs/spl/quick-start/qs-1b/>
-    1. Follow instructions in the "Add a Streams instance" section
+    1. Follow instructions in the "Add a Streams instance: IBM Cloud Pak for Data deployment" section
     1. Import the project for this sample
         - Select File > Open
         - Browse to following project folder, and open it.
