@@ -92,16 +92,20 @@ While the high level flow is the same for both scenarios, the detailed steps hav
 
 1. Work with application by opening up the VS Code editor on the TradesAppCloud_withLogTrace.spl SPL source code
 
-    Some additional trace and println statements have been added to the application to show examples of how to define and reference submission time variables, and how to add application trace statements to output these values into the application log.
+    Notice the trace and println statements that have been added to the application to show examples of how to define and reference submission time variables, and how to add application trace statements to output these values into the application log.
     
     Search for "LOOK HERE" to see the section of the application that is most relative to this sample.
     
     Notice the names for the two submission time variable names as they will be needed later on. 
     - _mySubmissionTimeVariable_string_
     - _mySubmissionTimeVariable_listOfStrings_
+           
+    Change the "yourName" string to something of your choosing.  This will allow you to see how it gets printed to the log. 
+    
         
-        ```        
+    ```        
     { 
+    
         // LOOK HERE
 
         // define submission time variables; 1 of each supported type (string, list of strings)
@@ -126,8 +130,7 @@ While the high level flow is the same for both scenarios, the detailed steps hav
         // submit the tuple
         submit(AvgPrice, PrintAvPrice);						
     } 
-    ```        
-    Change the "yourName" string to something of your choosing.  This will allow you to see how it gets printed to the log. 
+    ``` 
     
 1. Build the application image for the Edge
     1. Right click in the TradesAppCloud_withLogTrace application editing window, and select "Build"
