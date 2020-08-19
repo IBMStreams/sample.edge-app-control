@@ -14,7 +14,7 @@ The SPL sample application has two submission time variables defined in it.  It 
 
 * The sample program is written in SPL, so an elementary understanding of SPL might help understanding the sample better.  See SPL reference below.
 
-## Prerequisite steps to perform 
+## Prerequisite steps that are needed prior to trying this sample 
 
 * You will need to gather the following information prior to starting this sample exercise:   
     - IBM Cloud Pak for Data information
@@ -23,7 +23,7 @@ The SPL sample application has two submission time variables defined in it.  It 
         : These are the credentials (username and password) used to log in to the IBM Cloud Pak for Data environment in your browser. 
         - **_version_**: You can find the version number in the About section after logging in to the IBM Cloud Pak for Data environment in your browser.
         
-    - C:redentials (root password) for Edge nodes
+    - Credentials (root password) for Edge nodes
     
     - If using EAM
         - API key for EAM access  
@@ -67,9 +67,9 @@ While the steps are the same for both scenarios, the detailed steps have some di
 
 1. Develop application (via VS Code)
 
-    In this sample we use a predefined sample application called "TracesAppCloud.spl".  It is an SPL application that shows a simple SPL application that reads some stock ticker entries, does a simple calculation on them, and then writes them out. It will continue doing this in a loop.
+    The application used in this sample is a simple SPL application that reads stock ticker entries from a file, does a simple calculation on them, and then writes them out to a file. It will continue doing this in a loop.
 
-    For the purpose of this sample, some additional statements have been added to the application to show examples of how to define and reference submission time variables, and how to add application trace statements to output these values into the application log.
+    Some additional trace and println statements have been added to the application to show examples of how to define and reference submission time variables, and how to add application trace statements to output these values into the application log.
     
     Search for "LOOK HERE" to see the section of the application that is most relative to this sample.
     
@@ -77,7 +77,7 @@ While the steps are the same for both scenarios, the detailed steps have some di
     - _mySubmissionTimeVariable_string_
     - _mySubmissionTimeVariable_listOfStrings_
     
-    Note: if there is a naming conflict with submission time variables with different parts of the your application, or if you do not have access to the application source code, you will need to retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic.  The information retrieved by performing these for this sample application are shown in the attached files:
+    Note: if there is a naming conflict with submission time variables with different parts of the your application, or if you do not have access to the application source code, you will need to retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic.  The information retrieved by performing this process for this sample application are shown in the files in this repo:
         - config-files/app-definition.json
         - config-files/runtime-options.json
     
