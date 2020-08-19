@@ -207,19 +207,16 @@ From CP4D Console, perform these steps.  For more information, see "Deleting an 
 
 ![EAM Deploy](./images/DeployAppPackage-withEAM.png)
 
-#### 1. Develop application (via VS Code)
-- same as Scenario#1
-    
-#### 2. Build application for the Edge (via VS Code)
+#### 1. Develop and Build application for the Edge (via VS Code)
 - same as Scenario#1
         
-#### 3. Select Edge Node(s) for development and deployment (via CP4D Console)
+#### 2. Select Edge Node(s) for development and deployment (via CP4D Console)
 To see list of Edge nodes that have been tethered to this CPD instance, do these steps:
 1. login in to CPD Console
 1. Select Navigation Menu > Analyze > Edge Analytics > Remote systems
     This will display a list of the available nodes.  Select one of the _ieam-analytics-micro-edge-system_ type nodes for the development system.  Also, select one of these for the deployment system.  It can be the same system.
 
-#### 4. Develop / Publish application package 
+#### 3. Develop / Publish application package 
 ssh to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application discovered in step #1 above will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
     1. Install the OpenShift® command-line interface. See xxxx.
     1. Setup the environment variables
@@ -239,7 +236,7 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
         1. hzn dev service new -s app-control-sample-service -V 1.0 --noImageGen -i $OCP_DOCKER_HOST/$IMAGE_PREFIX/tradeswithlogtrace:1.0
     1. Add submission time variables and runtime-option:trace
         1. vi horizon/service.definition.json
-        1. insert the submission time variables into the "userInput" array such that it looks like this:
+        1. insert the submission time variables into the "userInput" array such that it looks like the following.  See more information on [determining what variables are supported.](#stv)
              ```
                 {
                     "org": "$HZN_ORG_ID",
@@ -283,7 +280,7 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
                 ```
             
 
-#### 5. Deploy application package to an Edge node 
+#### 4. Deploy application package to an Edge node 
 ssh to CP4D Edge node chosen for deployment and perform the following steps.  For more information, see the "Deploying using Edge Application Manager" topic.  The values for the submission time variables from the application will be specified during deployment.
     1. vi userinput.json and add the following json to it.
         
@@ -303,35 +300,45 @@ ssh to CP4D Edge node chosen for deployment and perform the following steps.  Fo
                 }       
         ```
 
-#### 6. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
+#### 5. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
+
+    hzn service log -f ibm.helloworld
+    
+1. Open up app-control-sample-xxxx.log file
+    - This file contains a variety of statements.  The standard println output will be in this log, as well as the output from the trace statements.  Search for "USER-NAME" for example of println output. The trace statements will contain "#splapptrc".  
+    - Here is a snippet of the log. Notice that the input variables that were supplied made it to the application and were output to this log file. (e.g. MyFavoriteFootballTeams). Also, notice that the DEBUG-LEVEL message was not in the log.  This means the STREAMS_OPT_TRACE_LEVEL runtime-option that set the level to INFO made it to the application as well. 
+
+```
+2020-08-19T10:07:10.064038778-07:00 stdout F 19 Aug 2020 17:07:10.063+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:82]  - mySubmissionTimeVariable_string =MyFavoriteFootballTeams
+2020-08-19T10:07:10.066033579-07:00 stdout F 19 Aug 2020 17:07:10.063+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:83]  - mySubmissionTimeVariable_listOfStrings var: 
+2020-08-19T10:07:10.066033579-07:00 stdout F 19 Aug 2020 17:07:10.064+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:85]  -    String element: Vikings
+2020-08-19T10:07:10.066033579-07:00 stdout F 19 Aug 2020 17:07:10.064+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:85]  -    String element: Packers
+2020-08-19T10:07:10.066033579-07:00 stdout F 19 Aug 2020 17:07:10.065+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:85]  -    String element: Lions
+2020-08-19T10:07:10.066033579-07:00 stdout F 19 Aug 2020 17:07:10.065+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:85]  -    String element: Bears
+
+2020-08-19T10:07:10.066033579-07:00 stdout F This sample is being is being tried out by: USER-NAME=  yourName
 
 
-The system log file contains several messages from many different sources.  To filter off what you are interested requires using grep'g techniques.
-- See all messages for service
-    - cat /var/log/syslog | grep image-name
-- See all trace messages for service - trace statements
-    - cat /var/log/syslog | grep image-name | grep apptrc
-        Notice the xxx statements produced from the application trace statements.
-        Notice also that they contain the variable values that we inputted.
+```
+
         
-#### 7. Un-deploy application
+#### 6. Un-deploy application
+        hzn unregister -f
 
 
 ## Additional Resources
 
 <a id="stv">
-***Submission Time Variable Name Collisions:*** 
+**Submission Time Variable Name Collisions:** 
 
 When the same name is used for a submission time variable in different namespaces or composites of the application, the variable names must be prepended by the application namespace and composite operator name.  To determine what this fully qualified name looks like, you may retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic. 
 
-This is also useful to discover the supported variables for an image that the source code is not readily available for.
+This is also useful to discover the supported variables for an image that the source code is not readily available for, as well as a full list of the supported runtime options.
 
 For illustration purposes, the information retrieved by performing this process for this sample application are shown in these files in this repo:
     
     - sample.edge-app-control/config-files/app-definition.json
     - sample.edge-app-control/config-files/runtime-options.json
-
-
 
 
 
@@ -374,4 +381,12 @@ You can create links to sections in the doc using the anchor tag, e.g:
 
 The section below outlines things that you should cover, but your outline and table of contents are important to flush out first.
 
+
+The system log file contains several messages from many different sources.  To filter off what you are interested requires using grep'g techniques.
+- See all messages for service
+    - cat /var/log/syslog | grep image-name
+- See all trace messages for service - trace statements
+    - cat /var/log/syslog | grep image-name | grep apptrc
+        Notice the xxx statements produced from the application trace statements.
+        Notice also that they contain the variable values that we inputted.
 
