@@ -197,11 +197,11 @@ From CP4D Console, perform these steps.  For more information, see ".... logs ..
               
 #### 7. Un-deploy application
 From CP4D Console, perform these steps.  For more information, see "Deleting an application deployment" topic.
-    1. Select CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
-    1. Select "app control sample'
-    1. Scroll down to Application instances.
-    1. Goto row for edge node that you would like to delete, and select three dots at clear right part of row.
-        1. Select Delete
+1. Select CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
+1. Select "app control sample'
+1. Scroll down to Application instances.
+1. Goto row for edge node that you would like to delete, and select three dots at clear right part of row.
+    1. Select Delete
 
 ### Scenario#2 - Develop and deploy application with IBM Edge Application Manager
 
@@ -218,25 +218,25 @@ To see list of Edge nodes that have been tethered to this CPD instance, do these
 
 #### 3. Develop / Publish application package 
 ssh to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application discovered in step #1 above will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
-    1. Install the OpenShift® command-line interface. See xxxx.
-    1. Setup the environment variables
-        - eval export $(cat agent-install.cfg)
-        - export HZN_EXCHANGE_USER_AUTH= _my_eam_api_key_
-        - export OCP_USER="cpd-admin-sa"
-        - export OCP_DOCKER_HOST=_default-route-to-openshift-image-registry_
-        - export OCP_TOKEN=_cpd-admin-sa_openshift-token_
-        - export IMAGE_PREFIX=_imagePrefix_   // from build step
-    1. Login to OpenShift and Docker
-        - oc login _openshift_cluster_url:port_ --token $OCP_TOKEN --insecure-skip-tls-verify=true
-        - docker login $OCP_DOCKER_HOST --username $OCP_USER --password $(oc whoami -t)
-    1. Pull the edge application image to the development node
-        - docker pull $OCP_DOCKER_HOST/$IMAGE_PREFIX/tradeswithlogtrace:1.0
-    1. Create EAM service project
-        1. mkdir app_control_sample; cd app_control_sample
-        1. hzn dev service new -s app-control-sample-service -V 1.0 --noImageGen -i $OCP_DOCKER_HOST/$IMAGE_PREFIX/tradeswithlogtrace:1.0
-    1. Add submission time variables and runtime-option:trace
-        1. vi horizon/service.definition.json
-        1. insert the submission time variables into the "userInput" array such that it looks like the following.  See more information on [determining what variables are supported.](#stv)
+1. Install the OpenShift® command-line interface. See xxxx.
+1. Setup the environment variables
+    - eval export $(cat agent-install.cfg)
+    - export HZN_EXCHANGE_USER_AUTH= _my_eam_api_key_
+    - export OCP_USER="cpd-admin-sa"
+    - export OCP_DOCKER_HOST=_default-route-to-openshift-image-registry_
+    - export OCP_TOKEN=_cpd-admin-sa_openshift-token_
+    - export IMAGE_PREFIX=_imagePrefix_   // from build step
+1. Login to OpenShift and Docker
+    - oc login _openshift_cluster_url:port_ --token $OCP_TOKEN --insecure-skip-tls-verify=true
+    - docker login $OCP_DOCKER_HOST --username $OCP_USER --password $(oc whoami -t)
+1. Pull the edge application image to the development node
+    - docker pull $OCP_DOCKER_HOST/$IMAGE_PREFIX/tradeswithlogtrace:1.0
+1. Create EAM service project
+    1. mkdir app_control_sample; cd app_control_sample
+    1. hzn dev service new -s app-control-sample-service -V 1.0 --noImageGen -i $OCP_DOCKER_HOST/$IMAGE_PREFIX/tradeswithlogtrace:1.0
+1. Add submission time variables and runtime-option:trace
+    1. vi horizon/service.definition.json
+    1. insert the submission time variables into the "userInput" array such that it looks like the following.  See more information on [determining what variables are supported.](#stv)
              ```
                 {
                     "org": "$HZN_ORG_ID",
@@ -282,7 +282,7 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
 
 #### 4. Deploy application package to an Edge node 
 ssh to CP4D Edge node chosen for deployment and perform the following steps.  For more information, see the "Deploying using Edge Application Manager" topic.  The values for the submission time variables from the application will be specified during deployment.
-    1. vi userinput.json and add the following json to it.
+1. vi userinput.json and add the following json to it.
         
         ```
                 {
