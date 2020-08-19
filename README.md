@@ -31,15 +31,20 @@ This article will use an SPL sample application that has some submission time va
         - **_credentials_**
         : These are the credentials (username and password) used to log in to the IBM Cloud Pak for Data environment in your browser. 
         - **_version_**: You can find the version number in the About section after logging in to the IBM Cloud Pak for Data environment in your browser.
-    - credentials (username and password) for Edge nodes
-    - EAM Scenario only
-        - API key for EAM access
-        - open shift cluster url & credentials (user & api-key)
+    - credentials (root password) for Edge nodes
+    
+    - If using EAM
+        - API key for EAM access  
+            - _eam-api-key_
+        - open shift cluster url & credentials 
+            - _openshift-cluster-url:port_
+            - _default-route-to-openshift-image-registry_
+            - _openshift-token-for-cpd-admin-sa_
 
 
 ## Steps 
 
-This sample will show how to develop and deploy the application with and without IBM Edge Application Manager.  The high level steps are the same for both of these cases.  
+This sample will show how to develop and deploy the application with and without IBM Edge Application Manager.  The high level steps are the same for both of these scenarios.  
 1. Develop Application
 1. Build Application for the Edge
 1. Select Edge nodes to use
@@ -67,7 +72,7 @@ While the steps are the same for both scenarios, the detailed steps has some dif
     
     Note: if there is a naming conflict with submission time variables with different parts of the your application, or if you do not have access to the application source code, you will need to retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic.  The information retrieved by performing these for this sample application are shown in the attached files:
         - config-files/app-definition.json
-        - runtime-options.json
+        - config-files/runtime-options.json
     
     ![App Snippet](./images/App_snippet.png)
     
