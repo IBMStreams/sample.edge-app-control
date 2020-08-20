@@ -218,8 +218,10 @@ To see list of Edge nodes that have been tethered to this CPD instance, do these
 
 #### 3. Develop / Publish application package 
 ssh to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
-1. Install the OpenShift® command-line interface. See xxxx.
-1. Setup the environment variables
+
+- Install the OpenShift® command-line interface. See xxxx.
+
+- Setup the environment variables
 
 ```
     eval export $(cat agent-install.cfg)
@@ -230,29 +232,29 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
     export IMAGE_PREFIX=_imagePrefix_   // from build step
 ```
     
-1. Login to OpenShift and Docker
+- Login to OpenShift and Docker
 ```
     oc login _openshift_cluster_url:port_ --token $OCP_TOKEN --insecure-skip-tls-verify=true
     docker login $OCP_DOCKER_HOST --username $OCP_USER --password $(oc whoami -t)
 ```
-1. Pull the edge application image to the development node
+- Pull the edge application image to the development node
 ```
     docker pull $OCP_DOCKER_HOST/$IMAGE_PREFIX/trades-withtrace:1.0
 ```
-1. Create a cryptographic signing key pair.
+- Create a cryptographic signing key pair.
 ```
     hzn key create "my_company_name" "my_email_address"
 ```
-1. Create EAM service project
+- Create EAM service project
 ```
     mkdir app_control_sample; cd app_control_sample
     hzn dev service new -s app-control-service -V 1.0 --noImageGen -i $OCP_DOCKER_HOST/$IMAGE_PREFIX/trades-withtrace:1.0
 ```
-1. Add submission time variables and runtime-option:trace
+- Add submission time variables and runtime-option:trace
     1. edit horizon/service.definition.json with editor of your choosing.
     1. insert the submission time variables into the "userInput" array such that it looks like the following.  See more information on [determining what variables are supported.](#stv)
     
-             ```
+```
                 {
                     "org": "$HZN_ORG_ID",
                     "label": "$SERVICE_NAME for $ARCH",
@@ -292,14 +294,14 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
                         }
                     }
                 }
-                ```
-1.Test the service by starting the service, reviewing the container logs, and stopping the service.
+```
+- Test the service by starting the service, reviewing the container logs, and stopping the service.
 
     hzn dev service start -S
     sudo cat /var/log/syslog | grep trades-withtrace[[]
     hzn dev service stop
 
-1. publish service
+- Publish service
 
 ```
     hzn exchange service publish -r "$OCP_DOCKER_HOST:$OCP_USER:$OCP_TOKEN" -f horizon/service.definition.json
@@ -309,7 +311,7 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
     
         hzn exchange service list
         
-1. publish pattern
+- Publish pattern
 
 ```
     hzn exchange pattern publish -f horizon/pattern.json 
@@ -397,54 +399,3 @@ For illustration purposes, the information retrieved by performing this process 
     
     - sample.edge-app-control/config-files/app-definition.json
     - sample.edge-app-control/config-files/runtime-options.json
-
-
-
-
-* Outline major steps to complete the task, e.g. They must use the X operator with parameters a,b, and c. State that early and repeat it a couple of times. 
-* Discuss details about each step
-   * Keep the steps to the point and concise.
-   * Make sure there is validation at the end of each step ... so the user knows that they have completed the steps successfully.  i.e. what should the user see at the end of each major step?
-
-Avoid discussing information that is interesting/cool but that a user, especially a novice, does not need to know to complete the task.
-
-# Preparing to write
-
-Some questions to help you identify the key information to highlight:
-* What pain points does this task address? Who would be interested in learning this information?
-
-* If I was a developer trying to find this article, what keywords would I be using to search for it? 
-   * Are those keywords highlighted early in the article?
-* Is there a real-world problem or user story around which you can frame the article?
-
-* What are the key points they need to know? E.g. They must use the X operator with parameters a,b, and c. 
-
-# Before you Start Writing
-If the article has a long list of instructions, put together a table of contents first to organize the flow of the instructions.
-
-Examples:
-* https://developer.ibm.com/streamsdev/docs/streams-quick-start-guide/
-* https://developer.ibm.com/streamsdev/2018/01/12/calculate-moving-averages-real-time-data-streams-designer/
-* https://developer.ibm.com/streamsdev/docs/common-patterns-tracking-moving-objects-streams-part-2-geofencing/
-
-You can create links to sections in the doc using the anchor tag, e.g:
-
-```
-- [step 1](#step1)
-- [step 2](#step2)
-...
-<a id="step1">
-<h2>Step 1</h2>
-```
-
-The section below outlines things that you should cover, but your outline and table of contents are important to flush out first.
-
-
-The system log file contains several messages from many different sources.  To filter off what you are interested requires using grep'g techniques.
-- See all messages for service
-    - cat /var/log/syslog | grep image-name
-- See all trace messages for service - trace statements
-    - cat /var/log/syslog | grep image-name | grep apptrc
-        Notice the xxx statements produced from the application trace statements.
-        Notice also that they contain the variable values that we inputted.
-
