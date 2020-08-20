@@ -329,7 +329,7 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
 
 #### 4. Deploy application package to an Edge node 
 ssh to CP4D Edge node chosen for deployment and perform the following steps.  For more information, see the "Deploying using Edge Application Manager" topic.  The values for the submission time variables from the application will be specified during deployment.
-1. edit horizon/userinput.json with editor of your choosing and add the following json to it.
+- Edit horizon/userinput.json with editor of your choosing and add the following json to it.
         
 ```
     {
@@ -347,7 +347,7 @@ ssh to CP4D Edge node chosen for deployment and perform the following steps.  Fo
     }       
 ```
 
-1. deploy pattern/service with user inputs.
+- Deploy pattern/service with user inputs.
 
 ```
     hzn register -p pattern-app-control-service-amd64    -f horizon/userinput.json
@@ -364,7 +364,7 @@ ssh to CP4D Edge node chosen for deployment and perform the following steps.  Fo
 
     hzn service log -f app-control-service
     
-1. View log statements
+- View log statements
     - This log contains a variety of statements.  The standard println output will be in this log, as well as the output from the trace statements.  Search for "USER-NAME" for example of println output. The trace statements will contain "#splapptrc".  
     - Here is a snippet of the log. Notice that the input variables that were supplied made it to the application and were output to this log file. (e.g. MyFavoriteFootballTeams). Also, notice that the DEBUG-LEVEL message was not in the log.  This means the STREAMS_OPT_TRACE_LEVEL runtime-option that set the level to INFO made it to the application as well. 
 
