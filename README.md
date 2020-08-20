@@ -297,9 +297,11 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
 ```
 - Test the service by starting the service, reviewing the container logs, and stopping the service.
 
+```
     hzn dev service start -S
     sudo cat /var/log/syslog | grep trades-withtrace[[]
     hzn dev service stop
+```
 
 - Publish service
 
