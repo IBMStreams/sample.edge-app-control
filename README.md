@@ -18,7 +18,7 @@ The sample will also show how the runtime behavior of a Streams Edge application
 - **_submission time variables_**.  These are optional, application specific variables that are defined in the application. The application code determines how the values passed in for these variables at deployment time affects the behavior of the application at runtime.
 
 
-- **_runtime options_**.  These control more basic built-in capabilities and therefore available for every application.  The set of supported built-in options are described in [runtime-options](#runtime-options).
+- **_runtime options_**.  These control more basic built-in capabilities and therefore available for every application.  The set of supported built-in options are described in [runtime-options](#stv).
 
 The SPL sample application has two submission time variables defined in it.  It will show how values for these variables, and the trace runtime-options, can be passed into the application at deploy time.  Also, it will show how the resulting trace statements can be viewed.
 
@@ -36,8 +36,7 @@ The SPL sample application has two submission time variables defined in it.  It 
         - **_version_**: You can find the version number in the About section after logging in to the IBM Cloud Pak for Data environment in your browser.
 
 2. [Install IBM Edge Analytics beta service on CPD](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/install.html) and [setup edge systems](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/admin.html)
-    - Gather the following information
-        - Credentials (root password) for Edge nodes
+    - Gather the credentials (root password) for Edge nodes
     
 3. [Install IBM Streams 5.4.0 service on CPD](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/svc/streams/install-intro.html)
 
@@ -49,7 +48,7 @@ The SPL sample application has two submission time variables defined in it.  It 
         - Gather the following information
             - API key for IEAM access  
                 - _eam-api-key_
-    - Reference Openshift administrator
+    - Reference Openshift administrator information
     
         - Gather Openshift cluster url & credentials 
             - _openshift-cluster-url:port_
@@ -82,7 +81,7 @@ This sample will show how to develop and deploy an Edge application in an CPD en
 1. View log
 1. Un-deploy Application
 
-While the high level flow is the same for both scenarios, the detailed steps have some differences in them and will be described separately in the following two scenarios.
+While the high level flow applies for both scenarios, the detailed steps have some differences in them and will be described separately in the following two scenarios.
 
 ### Scenario#1 - Develop and deploy application without IBM Edge Application Manager
 
@@ -221,22 +220,34 @@ To see list of Edge nodes that have been tethered to this CPD instance, do these
 ssh to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
 1. Install the OpenShift® command-line interface. See xxxx.
 1. Setup the environment variables
-    - eval export $(cat agent-install.cfg)
-    - export HZN_EXCHANGE_USER_AUTH= _my_eam_api_key_
-    - export OCP_USER="cpd-admin-sa"
-    - export OCP_DOCKER_HOST=_default-route-to-openshift-image-registry_
-    - export OCP_TOKEN=_cpd-admin-sa_openshift-token_
-    - export IMAGE_PREFIX=_imagePrefix_   // from build step
+
+```
+    eval export $(cat agent-install.cfg)
+    export HZN_EXCHANGE_USER_AUTH= _my_eam_api_key_
+    export OCP_USER="cpd-admin-sa"
+    export OCP_DOCKER_HOST=_default-route-to-openshift-image-registry_
+    export OCP_TOKEN=_cpd-admin-sa_openshift-token_
+    export IMAGE_PREFIX=_imagePrefix_   // from build step
+```
+    
 1. Login to OpenShift and Docker
-    - oc login _openshift_cluster_url:port_ --token $OCP_TOKEN --insecure-skip-tls-verify=true
-    - docker login $OCP_DOCKER_HOST --username $OCP_USER --password $(oc whoami -t)
+```
+    oc login _openshift_cluster_url:port_ --token $OCP_TOKEN --insecure-skip-tls-verify=true
+    docker login $OCP_DOCKER_HOST --username $OCP_USER --password $(oc whoami -t)
+```
 1. Pull the edge application image to the development node
-    - docker pull $OCP_DOCKER_HOST/$IMAGE_PREFIX/trades-withtrace:1.0
+```
+    docker pull $OCP_DOCKER_HOST/$IMAGE_PREFIX/trades-withtrace:1.0
+```
 1. Create a cryptographic signing key pair.
+```
     hzn key create "my_company_name" "my_email_address"
+```
 1. Create EAM service project
-    1. mkdir app_control_sample; cd app_control_sample
-    1. hzn dev service new -s app-control-service -V 1.0 --noImageGen -i $OCP_DOCKER_HOST/$IMAGE_PREFIX/trades-withtrace:1.0
+```
+    mkdir app_control_sample; cd app_control_sample
+    hzn dev service new -s app-control-service -V 1.0 --noImageGen -i $OCP_DOCKER_HOST/$IMAGE_PREFIX/trades-withtrace:1.0
+```
 1. Add submission time variables and runtime-option:trace
     1. edit horizon/service.definition.json with editor of your choosing.
     1. insert the submission time variables into the "userInput" array such that it looks like the following.  See more information on [determining what variables are supported.](#stv)
@@ -290,7 +301,9 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
 
 1. publish service
 
+```
     hzn exchange service publish -r "$OCP_DOCKER_HOST:$OCP_USER:$OCP_TOKEN" -f horizon/service.definition.json
+```
     
     1. verify app-control-service was published and exists in the service list.
     
@@ -298,11 +311,16 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
         
 1. publish pattern
 
+```
     hzn exchange pattern publish -f horizon/pattern.json 
+```
     
     1. verify pattern-app-control-service pattern was published and exists in this pattern list.
     
+    
+```
         hzn exchange pattern list
+```
             
 
 #### 4. Deploy application package to an Edge node 
@@ -326,11 +344,15 @@ ssh to CP4D Edge node chosen for deployment and perform the following steps.  Fo
         ```
 1. deploy pattern/service with user inputs.
 
+```
     hzn register -p pattern-app-control-service-amd64    -f horizon/userinput.json
     
+```
     1. verify that application is deployed, by checking for an agreement being created.  This make take a few minutes to show up.
     
+```
     hzn agreement list
+```
     
 
 #### 5. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
@@ -356,7 +378,10 @@ ssh to CP4D Edge node chosen for deployment and perform the following steps.  Fo
 
         
 #### 6. Un-deploy application
+
+```
         hzn unregister -f
+```
 
 
 ## Additional Resources
