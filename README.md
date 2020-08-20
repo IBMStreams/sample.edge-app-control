@@ -80,7 +80,7 @@ This sample will show how to develop and deploy an Edge application in an CPD en
 1. Develop/Publish Application
 1. Deploy Application to Edge nodes
 1. View log
-1. Undeploy Application
+1. Un-deploy Application
 
 While the high level flow is the same for both scenarios, the detailed steps have some differences in them and will be described separately in the following two scenarios.
 
@@ -136,7 +136,7 @@ While the high level flow is the same for both scenarios, the detailed steps hav
     1. Right click in the TradesAppCloud_withLogTrace application editing window, and select "Build"
         - Monitor the console output until the "Successfully build the application" message is displayed
     1. Right click in the TradesAppCloud_withLogTrace application editing window, and select "Build Edge Application Image"
-        - When prompted, select the base image that contains "streams-edge-base-application", and enter "tradesappcloud-withlogtrace" for image name, and "1.0" for image tag
+        - When prompted, select the base image that contains "streams-edge-base-application", and enter "trades-withtrace" for image name, and "1.0" for image tag
         - Click "Build image"
         - Monitor the console output until "Successfully built the edge application image", and take note of the imagePrefix from the Image Details.
         
@@ -148,7 +148,7 @@ While the high level flow is the same for both scenarios, the detailed steps hav
     1. Click 'Add Application packages' and fill in these values
         | Field | Value |
         | ----- | ----- |
-        | Name | app control sample | 
+        | Name | App Control Sample | 
         | Version | 1.0 |
         | Image reference | trades-withtrace:1.0 | 
     1. Scroll down to Additional attributes > Environment variables and add the following variables.  Clicking 'Add more" as needed.  See more information on [determining what variables are supported.](#stv)
@@ -160,27 +160,28 @@ While the high level flow is the same for both scenarios, the detailed steps hav
         | STREAMS_OPT_TRACE_LEVEL | 3  | 
     1. Save
     
-#### 5. Deploy application package to an Edge node 
+#### 3. Deploy application package to an Edge node 
 From CP4D Console perform these steps. For more informations, see "Deploying using Cloud Pak for Data" topic. The values for the submission time variables can not be changed at this time.
-1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
-1. Go to row with "app control sample" > select three dots at end for row > Deploy to edge
-    1. Select check box for remote system to deploy to.
-    1. Select Deploy option.
-1. Select "app control sample"
-    1. Look at Application instances
-        - verify that there is entry for a deployment
+1. Continuing from the 'Analytics apps' panel
+    - CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
+1. Go to end of the row with "App Control Sample" and click on three dots to open list of options, and select 'Deploy to edge'
+    1. When the list of remote systems is displayed, check the box next to the remote system you want to deploy to.
+    1. Select 'Deploy' option.
+1. To verify that the app was deployed successfully, select the "App Control Sample"
+    1. Verify that there is an application instance for the deployment to your chosen system.
 
-#### 6. View the runtime logs
+#### 4. View the runtime logs
 From CP4D Console, perform these steps.  For more information, see ".... logs ...." topic.
-1. Select CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
-1. Select "app control sample'
-1. Scroll down to Application instances.
-1. Goto row for edge node that you would like to see log for, and select three dots at clear right part of row.
-    1. Select Download logs.
+1. Continuing from the 'App Control Sample' panel
+    - CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps > app control sample
+1. Go to row for the application instance for the edge node that you would like to see log for, and select three dots at clear right part of row to see the list of options.
+    1. Select 'Download logs'.
 1. Unzip downloaded log package.
 1. Open up app-control-sample-xxxx.log file
-    - This file contains a variety of statements.  The standard println output will be in this log, as well as the output from the trace statements.  Search for "USER-NAME" for example of println output. The trace statements will contain "#splapptrc".  
-    - Here is a snippet of the log. Notice that the input variables that were supplied made it to the application and were output to this log file. (e.g. MyFavoriteFootballTeams). Also, notice that the DEBUG-LEVEL message was not in the log.  This means the STREAMS_OPT_TRACE_LEVEL runtime-option that set the level to INFO made it to the application as well. 
+    - This file contains a variety of statements.  The standard println output will be in this log, as well as the output from the trace statements.  Search for "USER-NAME" for example of println output. You should see the value for 'yourName' that you previously entered in to the application. The statements added due to the application trace statements will contain "#splapptrc".  
+    
+    - Here is a snippet of the log. Notice that the values for the input variables that were supplied made it to the application and were output to this log file. (e.g. MyFavoriteFootballTeams). 
+    Also, notice that the DEBUG-LEVEL message was not in the log.  This means the STREAMS_OPT_TRACE_LEVEL runtime-option that set the level to INFO was received and acted upon by the application, so as only trace statements of info level were accepted in the file. 
 
 ```
 2020-08-19T10:07:10.064038778-07:00 stdout F 19 Aug 2020 17:07:10.063+0000 [56] INFO #splapptrc,J[0],P[0],PrintAvPrice M[TradesAppCloud_withLogTrace.spl:appTrc:82]  - mySubmissionTimeVariable_string =MyFavoriteFootballTeams
@@ -195,13 +196,13 @@ From CP4D Console, perform these steps.  For more information, see ".... logs ..
 
 ```
               
-#### 7. Un-deploy application
+#### 5. Un-deploy application
 From CP4D Console, perform these steps.  For more information, see "Deleting an application deployment" topic.
-1. Select CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
-1. Select "app control sample'
-1. Scroll down to Application instances.
-1. Goto row for edge node that you would like to delete, and select three dots at clear right part of row.
-    1. Select Delete
+1. Continuing from the 'App Control Sample' panel
+    - CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps > App Control Sample
+1. Go to row for the application instance for the edge node that you would like to un-deploy the app from, and select three dots at clear right part of row to see the list of options.
+    1. Select 'Delete'
+    1. Confirm the Delete
 
 ### Scenario#2 - Develop and deploy application with IBM Edge Application Manager
 
@@ -217,7 +218,7 @@ To see list of Edge nodes that have been tethered to this CPD instance, do these
     This will display a list of the available nodes.  Select one of the _ieam-analytics-micro-edge-system_ type nodes for the development system.  Also, select one of these for the deployment system.  It can be the same system.
 
 #### 3. Develop / Publish application package 
-ssh to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application discovered in step #1 above will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
+ssh to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
 1. Install the OpenShift® command-line interface. See xxxx.
 1. Setup the environment variables
     - eval export $(cat agent-install.cfg)
@@ -230,10 +231,12 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
     - oc login _openshift_cluster_url:port_ --token $OCP_TOKEN --insecure-skip-tls-verify=true
     - docker login $OCP_DOCKER_HOST --username $OCP_USER --password $(oc whoami -t)
 1. Pull the edge application image to the development node
-    - docker pull $OCP_DOCKER_HOST/$IMAGE_PREFIX/tradeswithlogtrace:1.0
+    - docker pull $OCP_DOCKER_HOST/$IMAGE_PREFIX/trades-withtrace:1.0
+1. Create a cryptographic signing key pair.
+    hzn key create "my_company_name" "my_email_address"
 1. Create EAM service project
     1. mkdir app_control_sample; cd app_control_sample
-    1. hzn dev service new -s app-control-sample-service -V 1.0 --noImageGen -i $OCP_DOCKER_HOST/$IMAGE_PREFIX/tradeswithlogtrace:1.0
+    1. hzn dev service new -s app-control-service -V 1.0 --noImageGen -i $OCP_DOCKER_HOST/$IMAGE_PREFIX/trades-withtrace:1.0
 1. Add submission time variables and runtime-option:trace
     1. edit horizon/service.definition.json with editor of your choosing.
     1. insert the submission time variables into the "userInput" array such that it looks like the following.  See more information on [determining what variables are supported.](#stv)
@@ -271,7 +274,7 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
                     "deployment": {
                         "services": {
                             "tradesappcloud-withlogtrace": {
-                            "image": "$OCP_DOCKER_HOST/$IMAGE_PREFIX/tradesappcloud-withlogtrace:1.0",
+                            "image": "$OCP_DOCKER_HOST/$IMAGE_PREFIX/trades-withtrace:1.0",
                             "privileged": false,
                             "network": ""
                             }
@@ -279,18 +282,39 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
                     }
                 }
                 ```
+1.Test the service by starting the service, reviewing the container logs, and stopping the service.
+
+    hzn dev service start -S
+    sudo cat /var/log/syslog | grep trades-withtrace[[]
+    hzn dev service stop
+
+1. publish service
+
+    hzn exchange service publish -r "$OCP_DOCKER_HOST:$OCP_USER:$OCP_TOKEN" -f horizon/service.definition.json
+    
+    1. verify app-control-service was published and exists in the service list.
+    
+        hzn exchange service list
+        
+1. publish pattern
+
+    hzn exchange pattern publish -f horizon/pattern.json 
+    
+    1. verify pattern-app-control-service pattern was published and exists in this pattern list.
+    
+        hzn exchange pattern list
             
 
 #### 4. Deploy application package to an Edge node 
 ssh to CP4D Edge node chosen for deployment and perform the following steps.  For more information, see the "Deploying using Edge Application Manager" topic.  The values for the submission time variables from the application will be specified during deployment.
-1. edit userinput.json with editor of your choosing and add the following json to it.
+1. edit horizon/userinput.json with editor of your choosing and add the following json to it.
         
         ```
                 {
                     "services": [
                         {
                             "org": "$HZN_ORG_ID",
-                            "url": "sample-trace",
+                            "url": "app-control-service",
                             "variables": {
                                 "mySubmissionTimeVariable_string": "MyFavoriteFootballTeams",
                                 "mySubmissionTimeVariable_listOfStrings": ["Vikings,Packers,Lions,Bears"],
@@ -300,13 +324,21 @@ ssh to CP4D Edge node chosen for deployment and perform the following steps.  Fo
                     ]
                 }       
         ```
+1. deploy pattern/service with user inputs.
+
+    hzn register -p pattern-app-control-service-amd64    -f horizon/userinput.json
+    
+    1. verify that application is deployed, by checking for an agreement being created.  This make take a few minutes to show up.
+    
+    hzn agreement list
+    
 
 #### 5. View the runtime logs (ssh to CP4D Edge node chosen for deployment)
 
-    hzn service log -f app-control-service > myService.log
+    hzn service log -f app-control-service
     
-1. Open up myService.log file
-    - This file contains a variety of statements.  The standard println output will be in this log, as well as the output from the trace statements.  Search for "USER-NAME" for example of println output. The trace statements will contain "#splapptrc".  
+1. View log statements
+    - This log contains a variety of statements.  The standard println output will be in this log, as well as the output from the trace statements.  Search for "USER-NAME" for example of println output. The trace statements will contain "#splapptrc".  
     - Here is a snippet of the log. Notice that the input variables that were supplied made it to the application and were output to this log file. (e.g. MyFavoriteFootballTeams). Also, notice that the DEBUG-LEVEL message was not in the log.  This means the STREAMS_OPT_TRACE_LEVEL runtime-option that set the level to INFO made it to the application as well. 
 
 ```
