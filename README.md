@@ -353,7 +353,7 @@ ssh to CP4D Edge node chosen for deployment and perform the following steps.  Fo
     hzn register -p pattern-app-control-service-amd64    -f horizon/userinput.json
     
 ```
-    1. verify that application is deployed, by checking for an agreement being created.  This make take a few minutes to show up.
+- Verify that application is deployed, by checking for an agreement being created.  This make take a few minutes to show up.
     
 ```
     hzn agreement list
