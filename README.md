@@ -393,13 +393,13 @@ ssh to CP4D Edge node chosen for deployment and perform the following steps.  Fo
 
 <a id="stv">
     
-**Submission Time Variable Name:** 
+**Submission Time Variable Names:** 
 
-When the same name is used for a submission time variable in different namespaces or composites of the application, the variable names must be prepended by the application namespace and composite operator name.  To determine what this fully qualified name looks like, you may retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic. 
+For simple applications, the submission time variable names are just how they appear in the application. However, when the same name is used for a submission time variable in different namespaces or composites of the application, the variable names must be prepended by the application namespace and composite operator name.  To determine what this fully qualified name looks like, you may retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic. 
 
-This is also useful to discover the supported variables for an image that the source code is not readily available for, as well as a full list of the supported runtime options.
+This is also useful to discover the supported variables for an image whose source code is not readily available for. Also, a complete list of the supported runtime options can be discovered this way.
 
 For illustration purposes, the information retrieved by performing this process for this sample application are shown in these files in this repo:
     
-    - sample.edge-app-control/config-files/app-definition.json
-    - sample.edge-app-control/config-files/runtime-options.json
+- sample.edge-app-control/config-files/app-definition.json
+- sample.edge-app-control/config-files/runtime-options.json
