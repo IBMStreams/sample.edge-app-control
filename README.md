@@ -255,45 +255,45 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
     1. insert the submission time variables into the "userInput" array such that it looks like the following.  See more information on [determining what variables are supported.](#stv)
     
 ```
-                {
-                    "org": "$HZN_ORG_ID",
-                    "label": "$SERVICE_NAME for $ARCH",
-                    "description": "",
-                    "public": true,
-                    "documentation": "",
-                    "url": "$SERVICE_NAME",
-                    "version": "$SERVICE_VERSION",
-                    "arch": "$ARCH",
-                    "sharable": "multiple",
-                    "requiredServices": [],
-                    "userInput": [
-		                  {
-			                 "name": "mySubmissionTimeVariable_string",
-			                 "type": "string",
-			                 "defaultValue": "defaultValue"
-		                  },
-		                  {
-			                 "name": "mySubmissionTimeVariable_listOfStrings",
-			                 "type": "list of strings",
-			                 "defaultValue": "defaultFirstListElement,defaultSecondListElement"
-		                  },
-                            {
-                                "name": "STREAMS_OPT_TRACE_LEVEL",
-                                "label" : "Tracing level: 0=OFF, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG, 5=TRACE",
-                                "type": "string",
-                                "defaultValue": "1"
-                            }
-                    ],
-                    "deployment": {
-                        "services": {
-                            "tradesappcloud-withlogtrace": {
-                            "image": "$OCP_DOCKER_HOST/$IMAGE_PREFIX/trades-withtrace:1.0",
-                            "privileged": false,
-                            "network": ""
-                            }
-                        }
-                    }
+    {
+        "org": "$HZN_ORG_ID",
+        "label": "$SERVICE_NAME for $ARCH",
+        "description": "",
+        "public": true,
+        "documentation": "",
+        "url": "$SERVICE_NAME",
+        "version": "$SERVICE_VERSION",
+        "arch": "$ARCH",
+        "sharable": "multiple",
+        "requiredServices": [],
+        "userInput": [
+		      {
+			     "name": "mySubmissionTimeVariable_string",
+			     "type": "string",
+			     "defaultValue": "defaultValue"
+		      },
+		      {
+			     "name": "mySubmissionTimeVariable_listOfStrings",
+			     "type": "list of strings",
+			     "defaultValue": "defaultFirstListElement,defaultSecondListElement"
+		      },
+              {
+                    "name": "STREAMS_OPT_TRACE_LEVEL",
+                    "label" : "Tracing level: 0=OFF, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG, 5=TRACE",
+                    "type": "string",
+                    "defaultValue": "1"
                 }
+        ],
+        "deployment": {
+            "services": {
+                "tradesappcloud-withlogtrace": {
+                "image": "$OCP_DOCKER_HOST/$IMAGE_PREFIX/trades-withtrace:1.0",
+                "privileged": false,
+                "network": ""
+            }
+        }
+    }
+}
 ```
 - Test the service by starting the service, reviewing the container logs, and stopping the service.
 
@@ -331,21 +331,22 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
 ssh to CP4D Edge node chosen for deployment and perform the following steps.  For more information, see the "Deploying using Edge Application Manager" topic.  The values for the submission time variables from the application will be specified during deployment.
 1. edit horizon/userinput.json with editor of your choosing and add the following json to it.
         
-        ```
-                {
-                    "services": [
-                        {
-                            "org": "$HZN_ORG_ID",
-                            "url": "app-control-service",
-                            "variables": {
-                                "mySubmissionTimeVariable_string": "MyFavoriteFootballTeams",
-                                "mySubmissionTimeVariable_listOfStrings": ["Vikings,Packers,Lions,Bears"],
-                                "STREAMS_OPT_TRACE_LEVEL" : "3"
-                            }
-                        }
-                    ]
-                }       
-        ```
+```
+    {
+        "services": [
+            {
+                "org": "$HZN_ORG_ID",
+                "url": "app-control-service",
+                "variables": {
+                    "mySubmissionTimeVariable_string": "MyFavoriteFootballTeams",
+                    "mySubmissionTimeVariable_listOfStrings": ["Vikings,Packers,Lions,Bears"],
+                    "STREAMS_OPT_TRACE_LEVEL" : "3"
+                }
+            }
+        ]
+    }       
+```
+
 1. deploy pattern/service with user inputs.
 
 ```
