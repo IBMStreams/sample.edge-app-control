@@ -392,7 +392,8 @@ ssh to CP4D Edge node chosen for deployment and perform the following steps.  Fo
 ## Additional Resources
 
 <a id="stv">
-**Submission Time Variable Name Collisions:** 
+    
+**Submission Time Variable Name:** 
 
 When the same name is used for a submission time variable in different namespaces or composites of the application, the variable names must be prepended by the application namespace and composite operator name.  To determine what this fully qualified name looks like, you may retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic. 
 
