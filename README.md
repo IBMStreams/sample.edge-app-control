@@ -1,5 +1,3 @@
-# (UNDER CONSTRUCTION - This sample and its instructions are under development)
-
 # sample.edge-app-control
 
 The application used in this sample is a simple SPL application that reads stock ticker entries from a file, does a simple calculation on them, and then writes them out to a file. It will continue doing this in a loop.
@@ -29,14 +27,14 @@ The SPL sample application has two submission time variables defined in it.  It 
 ## Prerequisite steps that are needed prior to trying this sample 
   
 1. [Install IBM Cloud Pak for Data (CPD) 3.0.1](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/install/install.html)
-    - Gather the following information
+    - Gather the following information for use in this scenario
         - **_web client URL_**: This is the URL used to access the IBM Cloud Pak for Data environment in your browser. It should be of the form: https://HOST:PORT (e.g., https://123.45.67.89:12345).
         - **_credentials_**
         : These are the credentials (username and password) used to log in to the IBM Cloud Pak for Data environment in your browser. 
         - **_version_**: You can find the version number in the About section after logging in to the IBM Cloud Pak for Data environment in your browser.
 
 2. [Install IBM Edge Analytics beta service on CPD](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/install.html) and [setup edge systems](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/admin.html)
-    - Gather the credentials (root password) for Edge nodes
+    - Gather the credentials (root password) for Edge nodes for use in this sample
     
 3. [Install IBM Streams 5.4.0 service on CPD](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/svc/streams/install-intro.html)
 
@@ -45,12 +43,12 @@ The SPL sample application has two submission time variables defined in it.  It 
 5. If IEAM will be used to managed edge application lifecycles
     - [Install IBM Edge Application Manager 4.1](https://www.ibm.com/support/knowledgecenter/SSFKVV_4.1/hub/hub.html)
     
-        - Gather the following information
+        - Gather the following information for use in this sample
             - API key for IEAM access  
                 - _eam-api-key_
     - Reference Openshift administrator information
     
-        - Gather Openshift cluster url & credentials 
+        - Gather Openshift cluster url & credentials for use in this sample
             - _openshift-cluster-url:port_
             - _default-route-to-openshift-image-registry_
             - _openshift-token-for-cpd-admin-sa_
@@ -83,10 +81,12 @@ This sample will show how to develop and deploy an Edge application in an CPD en
 
 While the high level flow applies for both scenarios, the detailed steps have some differences in them and will be described separately in the following two scenarios.
 
-### Scenario#1 - Develop and deploy application without IBM Edge Application Manager
+## Scenario#1 - Develop and deploy application without IBM Edge Application Manager
 
 ![non-EAM Deploy](./images/DeployAppPkg-withoutEAM.png)
 
+<a id="vsc">
+    
 #### 1. Develop and Build application for the Edge (via VS Code)
 
 1. Work with application by opening up the VS Code editor on the TradesAppCloud_withLogTrace.spl SPL source code
@@ -142,7 +142,7 @@ While the high level flow applies for both scenarios, the detailed steps have so
 
 #### 2. Develop / Publish application package 
     
-- From CP4D Console, perform these steps. For more information, see "Packaging using Cloud Pak for Data" topic. 
+- From CP4D Console, perform these steps. For more information, see [Packaging using Cloud Pak for Data](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-register-by-cpd.html) topic. 
     1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
     1. Click 'Add Application packages' and fill in these values
         | Field | Value |
@@ -160,7 +160,7 @@ While the high level flow applies for both scenarios, the detailed steps have so
     1. Save
     
 #### 3. Deploy application package to an Edge node 
-From CP4D Console perform these steps. For more informations, see "Deploying using Cloud Pak for Data" topic. The values for the submission time variables can not be changed at this time.
+From CP4D Console perform these steps. For more information, see [Deploying using Cloud Pak for Data](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-deploy-cpd.html) topic.  The values for the submission time variables can not be changed at this time.
 1. Continuing from the 'Analytics apps' panel
     - CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
 1. Go to end of the row with "App Control Sample" and click on three dots to open list of options, and select 'Deploy to edge'
@@ -170,7 +170,7 @@ From CP4D Console perform these steps. For more informations, see "Deploying usi
     1. Verify that there is an application instance for the deployment to your chosen system.
 
 #### 4. View the runtime logs
-From CP4D Console, perform these steps.  For more information, see ".... logs ...." topic.
+From CP4D Console, perform these steps.  See [Monitoring edge systems and applications with Edge Analytics](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-monitor.html) for detailed instructions on how to view status, logs, metrics, etc. for edge applications.
 1. Continuing from the 'App Control Sample' panel
     - CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps > app control sample
 1. Go to row for the application instance for the edge node that you would like to see log for, and select three dots at clear right part of row to see the list of options.
@@ -196,19 +196,19 @@ From CP4D Console, perform these steps.  For more information, see ".... logs ..
 ```
               
 #### 5. Un-deploy application
-From CP4D Console, perform these steps.  For more information, see "Deleting an application deployment" topic.
+From CP4D Console, perform these steps.  For more information, see [Deleting an application deployment](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-unregister.html) topic.
 1. Continuing from the 'App Control Sample' panel
     - CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps > App Control Sample
 1. Go to row for the application instance for the edge node that you would like to un-deploy the app from, and select three dots at clear right part of row to see the list of options.
     1. Select 'Delete'
     1. Confirm the Delete
 
-### Scenario#2 - Develop and deploy application with IBM Edge Application Manager
+## Scenario#2 - Develop and deploy application with IBM Edge Application Manager
 
 ![EAM Deploy](./images/DeployAppPackage-withEAM.png)
 
 #### 1. Develop and Build application for the Edge (via VS Code)
-- same as Scenario#1
+These steps are identical to those listed in [scenario#1 Develop and Build section.](#vsc)
         
 #### 2. Select Edge Node(s) for development and deployment (via CP4D Console)
 To see list of Edge nodes that have been tethered to this CPD instance, do these steps:
@@ -217,9 +217,10 @@ To see list of Edge nodes that have been tethered to this CPD instance, do these
     This will display a list of the available nodes.  Select one of the _ieam-analytics-micro-edge-system_ type nodes for the development system.  Also, select one of these for the deployment system.  It can be the same system.
 
 #### 3. Develop / Publish application package 
-ssh to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
+Use the Secure Shell protocol (ssh) to log in to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application will be included in the resulting application package. The values for the variables are not specifed as part of the application package.  For more information, see [Packaging using Edge Application Manager](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-register-by-eam.html) topic.
 
-- Install the OpenShift® command-line interface. See xxxx.
+- Install the OpenShift® command-line interface.
+For more information, see [Get Started with the CLI 3.11](https://docs.openshift.com/container-platform/3.11/cli_reference/get_started_cli.html) or [Getting started with the CLI 4.3](https://docs.openshift.com/container-platform/4.3/cli_reference/openshift_cli/getting-started-cli.html).
 
 - Setup the environment variables
 
@@ -328,7 +329,7 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
             
 
 #### 4. Deploy application package to an Edge node 
-ssh to CP4D Edge node chosen for deployment and perform the following steps.  For more information, see the "Deploying using Edge Application Manager" topic.  The values for the submission time variables from the application will be specified during deployment.
+Use the Secure Shell protocol (ssh) to log in to CP4D Edge node chosen for deployment and perform the following steps.    For more information, see [Deploying using Edge Application Manager](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-deploy-eam.html) topic.  The values for the submission time variables from the application will be specified during deployment.
 - Edit horizon/userinput.json with editor of your choosing and add the following json to it.
         
 ```
@@ -383,7 +384,7 @@ ssh to CP4D Edge node chosen for deployment and perform the following steps.  Fo
 
         
 #### 6. Un-deploy application
-
+For more information, see [Deleting an application deployment](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-unregister.html) topic.
 ```
         hzn unregister -f
 ```
@@ -394,6 +395,7 @@ ssh to CP4D Edge node chosen for deployment and perform the following steps.  Fo
 <a id="stv">
     
 **Submission Time Variable Names:** 
+For more information, see [Retrieving service variables for edge applications](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-register-submit-parms.html) topic.
 
 For simple applications, the submission time variable names are just how they appear in the application. However, when the same name is used for a submission time variable in different namespaces or composites of the application, the variable names must be prepended by the application namespace and composite operator name.  To determine what this fully qualified name looks like, you may retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic. 
 
