@@ -140,7 +140,7 @@ While the high level flow applies for both scenarios, the detailed steps have so
 
 #### 2. Develop / Publish application package 
     
-- From CP4D Console, perform these steps. For more information, see "Packaging using Cloud Pak for Data" topic. 
+- From CP4D Console, perform these steps. For more information, see [Packaging using Cloud Pak for Data](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-register-by-cpd.html) topic. 
     1. Select CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
     1. Click 'Add Application packages' and fill in these values
         | Field | Value |
@@ -158,7 +158,7 @@ While the high level flow applies for both scenarios, the detailed steps have so
     1. Save
     
 #### 3. Deploy application package to an Edge node 
-From CP4D Console perform these steps. For more informations, see "Deploying using Cloud Pak for Data" topic. The values for the submission time variables can not be changed at this time.
+From CP4D Console perform these steps. For more information, see [Deploying using Cloud Pak for Data](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-deploy-cpd.html) topic.  The values for the submission time variables can not be changed at this time.
 1. Continuing from the 'Analytics apps' panel
     - CPD Console > Navigation Menu > Analyze > Edge Analytics > Analytics apps
 1. Go to end of the row with "App Control Sample" and click on three dots to open list of options, and select 'Deploy to edge'
@@ -194,7 +194,7 @@ From CP4D Console, perform these steps.  See [Monitoring edge systems and applic
 ```
               
 #### 5. Un-deploy application
-From CP4D Console, perform these steps.  For more information, see "Deleting an application deployment" topic.
+From CP4D Console, perform these steps.  For more information, see [Deleting an application deployment](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-unregister.html) topic.
 1. Continuing from the 'App Control Sample' panel
     - CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps > App Control Sample
 1. Go to row for the application instance for the edge node that you would like to un-deploy the app from, and select three dots at clear right part of row to see the list of options.
@@ -381,7 +381,7 @@ ssh to CP4D Edge node chosen for deployment and perform the following steps.  Fo
 
         
 #### 6. Un-deploy application
-
+For more information, see [Deleting an application deployment](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-unregister.html) topic.
 ```
         hzn unregister -f
 ```
