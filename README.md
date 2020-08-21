@@ -215,9 +215,10 @@ To see list of Edge nodes that have been tethered to this CPD instance, do these
     This will display a list of the available nodes.  Select one of the _ieam-analytics-micro-edge-system_ type nodes for the development system.  Also, select one of these for the deployment system.  It can be the same system.
 
 #### 3. Develop / Publish application package 
-ssh to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application will be included in the resulting application package. The values for the variables are not specifed as part of the application package.
+Use the Secure Shell protocol (ssh) to log in to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application will be included in the resulting application package. The values for the variables are not specifed as part of the application package.  For more information, see [Packaging using Edge Application Manager](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-register-by-eam.html) topic.
 
-- Install the OpenShift® command-line interface. See xxxx.
+- Install the OpenShift® command-line interface.
+For more information, see [Get Started with the CLI 3.11](https://docs.openshift.com/container-platform/3.11/cli_reference/get_started_cli.html) or [Getting started with the CLI 4.3](https://docs.openshift.com/container-platform/4.3/cli_reference/openshift_cli/getting-started-cli.html).
 
 - Setup the environment variables
 
@@ -326,7 +327,7 @@ ssh to CP4D Edge node chosen for development and perform the following steps.  F
             
 
 #### 4. Deploy application package to an Edge node 
-ssh to CP4D Edge node chosen for deployment and perform the following steps.  For more information, see the "Deploying using Edge Application Manager" topic.  The values for the submission time variables from the application will be specified during deployment.
+Use the Secure Shell protocol (ssh) to log in to CP4D Edge node chosen for deployment and perform the following steps.    For more information, see [Deploying using Edge Application Manager](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-deploy-eam.html) topic.  The values for the submission time variables from the application will be specified during deployment.
 - Edit horizon/userinput.json with editor of your choosing and add the following json to it.
         
 ```
