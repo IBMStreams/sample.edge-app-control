@@ -393,6 +393,7 @@ For more information, see [Deleting an application deployment](https://www.ibm.c
 <a id="stv">
     
 **Submission Time Variable Names:** 
+For more information, see [Retrieving service variables for edge applications](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-register-submit-parms.html) topic.
 
 For simple applications, the submission time variable names are just how they appear in the application. However, when the same name is used for a submission time variable in different namespaces or composites of the application, the variable names must be prepended by the application namespace and composite operator name.  To determine what this fully qualified name looks like, you may retrieve the names of the supported variables by following the "Retrieving service variables for edge applications" topic. 
 
