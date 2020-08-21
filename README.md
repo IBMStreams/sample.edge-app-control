@@ -86,6 +86,7 @@ While the high level flow applies for both scenarios, the detailed steps have so
 ![non-EAM Deploy](./images/DeployAppPkg-withoutEAM.png)
 
 <a id="vsc">
+    
 #### 1. Develop and Build application for the Edge (via VS Code)
 
 1. Work with application by opening up the VS Code editor on the TradesAppCloud_withLogTrace.spl SPL source code
