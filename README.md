@@ -208,7 +208,7 @@ From CP4D Console, perform these steps.  For more information, see [Deleting an 
 ![EAM Deploy](./images/DeployAppPackage-withEAM.png)
 
 #### 1. Develop and Build application for the Edge (via VS Code)
-These steps are identical to those listed [scenario#1 section.](#vsc)
+These steps are identical to those listed in [scenario#1 Develop and Build section.](#vsc)
         
 #### 2. Select Edge Node(s) for development and deployment (via CP4D Console)
 To see list of Edge nodes that have been tethered to this CPD instance, do these steps:
