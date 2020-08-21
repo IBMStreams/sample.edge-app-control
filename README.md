@@ -129,6 +129,7 @@ While the high level flow applies for both scenarios, the detailed steps have so
     } 
     ``` 
 <a id="vsc">
+    
 1. Build the application image for the Edge
     1. Right click in the TradesAppCloud_withLogTrace application editing window, and select "Build"
         - Monitor the console output until the "Successfully build the application" message is displayed
