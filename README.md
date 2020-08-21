@@ -128,7 +128,7 @@ While the high level flow applies for both scenarios, the detailed steps have so
         submit(AvgPrice, PrintAvPrice);						
     } 
     ``` 
-    
+<a id="vsc">
 1. Build the application image for the Edge
     1. Right click in the TradesAppCloud_withLogTrace application editing window, and select "Build"
         - Monitor the console output until the "Successfully build the application" message is displayed
@@ -206,7 +206,7 @@ From CP4D Console, perform these steps.  For more information, see [Deleting an 
 ![EAM Deploy](./images/DeployAppPackage-withEAM.png)
 
 #### 1. Develop and Build application for the Edge (via VS Code)
-- same as Scenario#1
+These steps are identical to those listed [scenario#1 section.](#vsc)
         
 #### 2. Select Edge Node(s) for development and deployment (via CP4D Console)
 To see list of Edge nodes that have been tethered to this CPD instance, do these steps:
