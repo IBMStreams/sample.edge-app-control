@@ -81,7 +81,7 @@ This sample will show how to develop and deploy an Edge application in an CPD en
 
 While the high level flow applies for both scenarios, the detailed steps have some differences in them and will be described separately in the following two scenarios.
 
-### Scenario#1 - Develop and deploy application without IBM Edge Application Manager
+## Scenario#1 - Develop and deploy application without IBM Edge Application Manager
 
 ![non-EAM Deploy](./images/DeployAppPkg-withoutEAM.png)
 
@@ -203,7 +203,7 @@ From CP4D Console, perform these steps.  For more information, see [Deleting an 
     1. Select 'Delete'
     1. Confirm the Delete
 
-### Scenario#2 - Develop and deploy application with IBM Edge Application Manager
+## Scenario#2 - Develop and deploy application with IBM Edge Application Manager
 
 ![EAM Deploy](./images/DeployAppPackage-withEAM.png)
 
