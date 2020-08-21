@@ -1,5 +1,3 @@
-# (UNDER CONSTRUCTION - This sample and its instructions are under development)
-
 # sample.edge-app-control
 
 The application used in this sample is a simple SPL application that reads stock ticker entries from a file, does a simple calculation on them, and then writes them out to a file. It will continue doing this in a loop.
@@ -29,14 +27,14 @@ The SPL sample application has two submission time variables defined in it.  It 
 ## Prerequisite steps that are needed prior to trying this sample 
   
 1. [Install IBM Cloud Pak for Data (CPD) 3.0.1](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/install/install.html)
-    - Gather the following information
+    - Gather the following information for use in this scenario
         - **_web client URL_**: This is the URL used to access the IBM Cloud Pak for Data environment in your browser. It should be of the form: https://HOST:PORT (e.g., https://123.45.67.89:12345).
         - **_credentials_**
         : These are the credentials (username and password) used to log in to the IBM Cloud Pak for Data environment in your browser. 
         - **_version_**: You can find the version number in the About section after logging in to the IBM Cloud Pak for Data environment in your browser.
 
 2. [Install IBM Edge Analytics beta service on CPD](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/install.html) and [setup edge systems](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/admin.html)
-    - Gather the credentials (root password) for Edge nodes
+    - Gather the credentials (root password) for Edge nodes for use in this sample
     
 3. [Install IBM Streams 5.4.0 service on CPD](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/svc/streams/install-intro.html)
 
@@ -45,12 +43,12 @@ The SPL sample application has two submission time variables defined in it.  It 
 5. If IEAM will be used to managed edge application lifecycles
     - [Install IBM Edge Application Manager 4.1](https://www.ibm.com/support/knowledgecenter/SSFKVV_4.1/hub/hub.html)
     
-        - Gather the following information
+        - Gather the following information for use in this sample
             - API key for IEAM access  
                 - _eam-api-key_
     - Reference Openshift administrator information
     
-        - Gather Openshift cluster url & credentials 
+        - Gather Openshift cluster url & credentials for use in this sample
             - _openshift-cluster-url:port_
             - _default-route-to-openshift-image-registry_
             - _openshift-token-for-cpd-admin-sa_
@@ -170,7 +168,7 @@ From CP4D Console perform these steps. For more informations, see "Deploying usi
     1. Verify that there is an application instance for the deployment to your chosen system.
 
 #### 4. View the runtime logs
-From CP4D Console, perform these steps.  For more information, see ".... logs ...." topic.
+From CP4D Console, perform these steps.  See [Monitoring edge systems and applications with Edge Analytics](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-monitor.html) for detailed instructions on how to view status, logs, metrics, etc. for edge applications.
 1. Continuing from the 'App Control Sample' panel
     - CPD console > Navigation Menu > Analyze > Edge Analytics > Analytics apps > app control sample
 1. Go to row for the application instance for the edge node that you would like to see log for, and select three dots at clear right part of row to see the list of options.
