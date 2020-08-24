@@ -5,11 +5,11 @@ This sample has the following intents and purposes:
 1. Show how submission time variables can be added to an SPL application.
 1. Show how the trace statements can be added to an application, how the trace level can be controlled, and how to view the trace logs. 
 
-The simple starter application processes pre-canned stock trades from a CSV file.  It will filter out some of the stocks based on ticker names.  It will then calculate the average, maximum and minimum ask price for each of the stocks.  The results will be written to standard out.
+The simple starter application processes predefined stock trades from a CSV file.  It filters out some of the stocks based on ticker names.  It calculates the average, maximum and minimum ask price for each of the stocks.  The results are written to standard out.
 
 This application is limited in scope in that it runs only at the micro edge, and does not attempt any communication to the macro edge like a real application would do.
 
-## overview
+## Overview
 The objective of this sample is to illustrate the steps involved with developing an Streams Programming Language (SPL) application for the Edge.  It will start with the application SPL source code, proceed to the application build process, followed by deployment (including configuration) to the edge nodes, and finish with examining the runtime output.  
 
 There are two ways of managing the edge application deployment lifecycles.
@@ -225,7 +225,7 @@ To see list of Edge nodes that have been tethered to this CPD instance, do these
     This will display a list of the available nodes.  Select one of the _ieam-analytics-micro-edge-system_ type nodes for the development system.  Also, select one of these for the deployment system.  It can be the same system.
 
 #### 3. Develop / Publish application package 
-Use the Secure Shell protocol (ssh) to log in to CP4D Edge node chosen for development and perform the following steps.  For more information, see the "Packaging an edge application service for deployment by using Edge Application Manager" topic.  The submission time variables from the application will be included in the resulting application package. The values for the variables are not specifed as part of the application package.  For more information, see [Packaging using Edge Application Manager](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-register-by-eam.html) topic.
+Use the Secure Shell protocol (ssh) to log in to CP4D Edge node chosen for development and perform the following steps.  The submission time variables from the application will be included in the resulting application package. The values for the variables are not specifed as part of the application package.  For more information, see [Packaging using Edge Application Manager](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-register-by-eam.html) topic.
 
 - Install the OpenShift® command-line interface.
 For more information, see [Get Started with the CLI 3.11](https://docs.openshift.com/container-platform/3.11/cli_reference/get_started_cli.html) or [Getting started with the CLI 4.3](https://docs.openshift.com/container-platform/4.3/cli_reference/openshift_cli/getting-started-cli.html).
