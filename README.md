@@ -140,8 +140,7 @@ While the high level flow applies for both scenarios, the detailed steps have so
     ``` 
     
 1. Build the application image for the Edge
-
-    Right click in the TradesAppCloud_withLogTrace application editing window, and select "Build Edge Application Image"
+    1. Right click in the TradesAppCloud_withLogTrace application editing window, and select "Build Edge Application Image"
         - Monitor the console output until the "Successfully built the application" message is displayed
         - When prompted, select the base image that contains "streams-edge-base-application", and enter "trades-withtrace" for image name, and "1.0" for image tag
         - Click "Build image"
