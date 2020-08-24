@@ -1,15 +1,13 @@
 # sample.edge-app-control
 
-This sample has the following purposes: 
+This sample has the following intents and purposes: 
 1. Show an example of developing and deploying a simple Streams Processing Language (SPL) application in Cloud Pak for Data (CP4D) edge environment.
 1. Show how submission time variables can be added to an SPL application.
 1. Show how the trace statements can be added to an application, how the trace level can be controlled, and how to view the trace logs. 
 
 The simple starter application processes pre-canned stock trades from a CSV file.  It will filter out some of the stocks based on ticker names.  It will then calculate the average, maximum and minimum ask price for each of the stocks.  The results will be written to standard out.
 
-This application runs only at the micro edge, and does not attempt any communication to the macro edge like a real application would do.
-
-Submission time variables are supported by this application, and there inputted values will be traced to the trace log.
+This application is limited in scope in that it runs only at the micro edge, and does not attempt any communication to the macro edge like a real application would do.
 
 The objective of this sample is to illustrate the steps involved with developing an Streams Programming Language (SPL) application for the Edge.  It will start with the application SPL source code, proceed to the application build process, followed by deployment (including configuration) to the edge nodes, and finish with examining the runtime output.  
 
