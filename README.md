@@ -9,6 +9,7 @@ The simple starter application processes pre-canned stock trades from a CSV file
 
 This application is limited in scope in that it runs only at the micro edge, and does not attempt any communication to the macro edge like a real application would do.
 
+## overview
 The objective of this sample is to illustrate the steps involved with developing an Streams Programming Language (SPL) application for the Edge.  It will start with the application SPL source code, proceed to the application build process, followed by deployment (including configuration) to the edge nodes, and finish with examining the runtime output.  
 
 There are two ways of managing the edge application deployment lifecycles.
