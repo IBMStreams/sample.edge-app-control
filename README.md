@@ -1,13 +1,9 @@
 # sample.edge-app-control
 
 This sample has the following intents and purposes: 
-1. Show an example of developing and deploying a simple Streams Processing Language (SPL) application in Cloud Pak for Data (CP4D) edge environment.
+1. Show an example of developing and deploying a simple Streams Processing Language (SPL) application in Cloud Pak for Data (CP4D) edge environment.  Detailed instructions will be provided for deployment using Cloud Pak for Data edge capabilities, as well, as deployment using IBM Edge Application Manager.
 1. Show how submission time variables can be added to an SPL application.
-1. Show how the trace
-2020-08-26T12:57:32.669001408-07:00 stdout F {'average': 1676.468925031888, 'sensor_id': 'sensor_1', 'period_end': 'Wed Aug 26 19:57:32 2020'}
-2020-08-26T12:57:32.669061438-07:00 stdout F {'average': 1535.4473696593964, 'sensor_id': 'sensor_10', 'period_end': 'Wed Aug 26 19:57:32 2020'}
-2020-08-26T12:57:32.669075576-07:00 stdout F {'average': 1775.567856314266, 'sensor_id': 'sensor_2', 'period_end': 'Wed Aug 26 19:57:32 2020'}
-2020-08-26T12:57:32.669097607-07:00 stdout F {'average': 1309.5090881266447, 'sensor_id': 'sensor_3', 'period_end': 'Wed Aug 26 19:57:32 2020'} statements can be added to an application, how the trace level can be controlled, and how to view the trace logs. 
+1. Show how the trace statements can be added to an application, how the trace level can be controlled, and how to view the trace logs. 
 
 The simple starter application processes predefined stock trades from a CSV file.  It filters out some of the stocks based on ticker names.  It calculates the average, maximum and minimum ask price for each of the stocks.  The results are written to standard out.
 
@@ -148,7 +144,7 @@ While the high level flow applies for both scenarios, the detailed steps have so
     1. Monitor the console output until the "Successfully built the application" message is displayed
     1. When prompted, select the base image that contains "streams-base-edge-application", and enter "trades-withtrace" for image name, and "1.0" for image tag
     1. Click "Build image"
-    1. Monitor the console output until "Successfully built the edge application image", and take note of the imagePrefix from the Image Details.  The imagePrefix will be needed later during the Develop / Publish application package step when deploying using EAM.
+    1. Monitor the console output until "Successfully built the edge application image", and take note of the imagePrefix from the Image Details.  It will be needed later during the Develop / Publish application package step when deploying using EAM.
         
 
 #### 2. Develop / Publish application package 
