@@ -89,7 +89,7 @@ composite TradesAppCloud_withLogTrace
 						appTrc(spl::Trace.debug, "*** DEBUG-LEVEL of trace message *** ");
 
 						// add some print lines - modify "yourName" below if you would like to customize the output.
-						printStringLn("Average asking price for " + ticker + "  is " + (rstring) average);
+						printStringLn("The average asking price for " + ticker + "  is " + (rstring) average);
 						printStringLn("This sample is being is being tried out by: USER-NAME= " + "yourName");
 
 						// submit the tuple
