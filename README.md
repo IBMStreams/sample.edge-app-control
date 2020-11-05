@@ -48,7 +48,7 @@ The SPL sample application has two submission time variables defined in it.  It 
 
 4. [Provision a Streams instance](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/svc/streams/provision.html#provision)
 
-5. If IEAM will be used to managed edge application lifecycles
+5. (Optional) If IEAM will be used to managed edge application lifecycles
     - [Install IBM Edge Application Manager 4.1](https://www.ibm.com/support/knowledgecenter/SSFKVV_4.1/hub/hub.html)
     
         - Gather the following information for use in this sample
