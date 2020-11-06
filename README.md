@@ -65,8 +65,7 @@ The SPL sample application has two submission time variables defined in it.  It 
    
    
 7. Install and setup the Visual Studio Code (VS Code) tool. 
-    1. Install and setup VS Code. See the "Installation and setup" section of this reference: 
-<http://ibmstreams.github.io/streamsx.documentation/docs/spl/quick-start/qs-1b/>
+    1. Install and setup VS Code. See the "Installation and setup" section of this [reference](http://ibmstreams.github.io/streamsx.documentation/docs/spl/quick-start/qs-1b)
     1. Follow instructions in the "Add a Streams instance: IBM Cloud Pak for Data deployment" section
     1. Import the project for this sample
         - Select File > Open
